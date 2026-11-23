@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Capstone case study: a bilingual Arabic-English, AI-assisted training programme for the frontline stewards of a major international football tournament.">
+<meta property="og:title" content="Matchday Ready - capstone case study">
+<meta property="og:image" content="clips/intro.jpg">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Matchday Ready Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a capstone case study told like a matchday — navy "night match" bands with a curved floodlit edge carry the story beats; light "daylight" bands carry the evidence; pale yellow is the highlighter, bright blue the action colour. */
+:root{
+  --bg:#f7f9fc; --surface:#ffffff; --ink:#0b0f2a; --muted:#545b70; --line:#d1d9e0;
+  --navy:#090b29; --navy-2:#11163d; --on-navy:#f2f5fb; --navy-soft:#c3cae4; --navy-line:#262d5e;
+  --blue:#009df6; --blue-ink:#ffffff; --sky:#72c1ee; --yellow:#e6e58b; --yellow-ink:#0b0f2a;
+  --tint:#eaf3fb; --sky-band:#e4f2fc; --good-bg:#f3f3cc; --bad-bg:#fbe9e6;
+  --f-display:"Rubik","Segoe UI",system-ui,sans-serif;
+  --f-body:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --max:1200px; --r:14px;
+  --shadow:0 1px 2px rgba(9,11,41,.06),0 12px 32px -12px rgba(9,11,41,.18);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#070918; --surface:#0f1433; --ink:#e9edf8; --muted:#9aa3c0; --line:#232a4d;
+  --navy:#04061a; --navy-2:#0b1030; --on-navy:#eef1fa; --navy-soft:#b4bcda; --navy-line:#232a58;
+  --blue:#2aaef8; --blue-ink:#04061a; --sky:#72c1ee; --yellow:#dedd7c; --yellow-ink:#0b0f2a;
+  --tint:#141b3d; --sky-band:#0d1534; --good-bg:#2c2c14; --bad-bg:#3a2128;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -12px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#070918; --surface:#0f1433; --ink:#e9edf8; --muted:#9aa3c0; --line:#232a4d;
+  --navy:#04061a; --navy-2:#0b1030; --on-navy:#eef1fa; --navy-soft:#b4bcda; --navy-line:#232a58;
+  --blue:#2aaef8; --blue-ink:#04061a; --sky:#72c1ee; --yellow:#dedd7c; --yellow-ink:#0b0f2a;
+  --tint:#141b3d; --sky-band:#0d1534; --good-bg:#2c2c14; --bad-bg:#3a2128;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -12px rgba(0,0,0,.6); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--navy)}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.06;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(2rem,4.2vw,3.3rem);font-weight:800}
+h3{font-size:1.22rem;font-weight:700;letter-spacing:-.005em}
+p{margin:0}
+a{color:inherit}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:500}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+.on-navy .eyebrow{color:var(--sky)}
+.lede{font-size:clamp(1.08rem,1.6vw,1.24rem);color:var(--muted);max-width:60ch;line-height:1.6}
+.on-navy .lede{color:var(--navy-soft)}
+.hl{background:linear-gradient(transparent 60%, var(--yellow) 60%, var(--yellow) 94%, transparent 94%);padding:0 .08em}
+.on-navy .hl{background:none;color:var(--yellow)}
+.head{display:grid;gap:16px;margin-bottom:clamp(32px,5vw,52px)}
+section{padding-block:clamp(72px,10vw,128px)}
+.on-navy{background:var(--navy);color:var(--on-navy)}
+.band-sky{background:var(--sky-band)}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;font:700 1rem var(--f-body);padding:14px 22px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;transition:transform .2s ease}
+.btn-cta.primary{background:var(--yellow);color:var(--yellow-ink)}
+.btn-cta.ghost{background:transparent;color:var(--on-navy);box-shadow:inset 0 0 0 1.5px var(--navy-line)}
+.btn-cta:hover{transform:translateY(-2px)}
+.btn-cta:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+
+/* Top nav */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--navy);border-bottom:1px solid var(--navy-line)}
+.topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{font-family:var(--f-display);font-weight:700;color:var(--on-navy);text-decoration:none;white-space:nowrap;font-size:.98rem}
+.brand span{color:var(--sky);font-weight:500}
+.navlinks{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:var(--navy-soft);text-decoration:none;font-size:.86rem;font-weight:600;padding:7px 11px;border-radius:999px;white-space:nowrap}
+.navlinks a:hover,.navlinks a.active{color:var(--on-navy);background:var(--navy-line)}
+.lang{display:flex;flex:none;border:1px solid var(--navy-line);border-radius:999px;padding:3px;gap:2px}
+.lang button{font:700 .78rem var(--f-mono);letter-spacing:.06em;border:0;border-radius:999px;padding:6px 11px;background:transparent;color:var(--navy-soft);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--yellow);color:var(--yellow-ink)}
+.navlinks{margin-left:auto}
+.readbar{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--sky))}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding-block:clamp(48px,7vw,88px) clamp(110px,13vw,170px)}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-1px;height:clamp(60px,8vw,110px);background:var(--bg);border-radius:50% 50% 0 0 / 100% 100% 0 0}
+.hero .glow{position:absolute;inset:-20% -10% auto auto;width:70%;height:120%;background:radial-gradient(closest-side, rgba(0,157,246,.28), transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.08fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero .wrap > *{min-width:0}
+.badge-cap{display:inline-flex;gap:8px;align-items:center;font:600 .78rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--yellow-ink);padding:6px 12px;border-radius:999px}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:900;letter-spacing:-.035em;margin-block:22px 22px;line-height:.98}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero .sub{color:var(--navy-soft);font-size:clamp(1.05rem,1.5vw,1.2rem);max-width:50ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:30px;font-size:.88rem;color:var(--navy-soft)}
+.facts b{color:var(--on-navy);font-weight:700}
+.player{position:relative;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px var(--navy-line)}
+.player video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.player .play{position:absolute;inset:0;display:grid;place-items:center;border:0;cursor:pointer;background:linear-gradient(180deg,rgba(9,11,41,0) 40%,rgba(9,11,41,.75));color:#fff;padding:0}
+.player .play .disc{width:84px;height:84px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(230,229,139,.22);transition:transform .25s ease}
+.player .play:hover .disc{transform:scale(1.07)}
+.player .play svg{width:30px;height:30px;margin-left:5px;fill:var(--yellow-ink)}
+.player .play .lbl{position:absolute;left:18px;right:18px;bottom:16px;text-align:start;font:600 .92rem var(--f-body)}
+.player .play .lbl small{display:block;font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:2px}
+
+/* Stats */
+.stats{margin-top:calc(-1 * clamp(70px,8vw,110px));position:relative;z-index:2;padding-block:0 clamp(56px,8vw,96px)}
+.statgrid{display:grid;grid-template-columns:repeat(6,1fr);background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.stat{padding:clamp(18px,2.4vw,28px);border-left:1px solid var(--line);min-width:0}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--f-display);font-size:clamp(2rem,3.6vw,3rem);font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat b small{font-size:.5em;font-weight:700;margin-left:2px}
+.stat span{display:block;font-size:.86rem;color:var(--muted);margin-top:8px;line-height:1.35}
+.stat.accent{background:var(--yellow);color:var(--yellow-ink)}
+.stat.accent span{color:var(--yellow-ink);opacity:.8}
+
+/* Challenge */
+.challenge{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.challenge > *{min-width:0}
+.constraints{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cons{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:6px;align-content:start}
+.cons .k{font:600 .7rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.cons h4{font-size:1.05rem}
+.cons p{font-size:.9rem;color:var(--muted);line-height:1.45}
+.brief{margin:28px 0 0;display:grid;border-top:1px solid var(--line)}
+.brief div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.brief dt{font:600 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.brief dd{margin:0}
+
+/* Learners */
+.persona{display:grid;grid-template-columns:.9fr 1.1fr;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.persona > *{min-width:0}
+.persona img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px}
+.persona .body{padding:clamp(22px,3.5vw,40px);display:grid;gap:16px;align-content:center}
+.persona .tag{font:600 .7rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.persona h3{font-size:clamp(1.4rem,2.4vw,1.9rem)}
+.persona blockquote{margin:0;font-family:var(--f-display);font-size:1.15rem;font-weight:500;border-left:4px solid var(--blue);padding-left:14px;line-height:1.4}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.needs div{background:var(--tint);border-radius:10px;padding:12px;font-size:.88rem;line-height:1.4}
+.needs b{display:block;font-family:var(--f-display);font-size:.95rem;margin-bottom:2px}
+.journey{margin-top:clamp(36px,5vw,56px)}
+.journey-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.journey-head p{color:var(--muted);font-size:.9rem}
+.track-scroll{overflow:hidden;position:relative;padding-block:8px 14px;margin-inline:calc(-1 * max(20px, env(safe-area-inset-left, 0px)));-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:16px;width:max-content;position:relative;padding-top:22px;animation:journey 70s linear infinite}
+.track-scroll:hover .track,.track-scroll:focus-within .track,.track-scroll.paused .track{animation-play-state:paused}
+@keyframes journey{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+.track::before{content:"";position:absolute;left:0;right:0;top:8px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--blue) 0 14px,transparent 14px 22px)}
+.mod{width:228px;flex:none;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;display:grid;align-content:start;box-shadow:var(--shadow);transition:transform .3s ease, box-shadow .3s ease}
+.mod:hover{transform:translateY(-6px);box-shadow:0 24px 40px -18px rgba(9,11,41,.45)}
+.mod::before{content:"";position:absolute;top:-19px;left:22px;width:14px;height:14px;border-radius:50%;background:var(--sky-band);border:3px solid var(--blue);z-index:1}
+.mod .pic{position:relative;height:124px;background:linear-gradient(135deg,var(--blue),var(--navy))}
+.mod .pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.mod:hover .pic img{transform:scale(1.08)}
+.mod .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(9,11,41,.65))}
+.mod .n{position:absolute;left:12px;bottom:10px;z-index:1;font:800 1.5rem var(--f-display);color:#fff;letter-spacing:-.02em;line-height:1}
+.mod .tx{padding:14px 16px 16px;display:grid;gap:6px}
+.mod h4{font-size:1.02rem;line-height:1.2}
+.mod p{font-size:.82rem;color:var(--muted);line-height:1.4}
+.mod.end{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.mod.end p{color:var(--navy-soft)}
+.mod.end .pic{background:radial-gradient(circle at 70% 30%,var(--yellow),var(--blue) 55%,var(--navy))}
+.mod.end::before{background:var(--yellow);border-color:var(--yellow)}
+.mod .pic .flag{position:absolute;right:12px;top:12px;z-index:1;font:700 .66rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--yellow-ink);padding:3px 8px;border-radius:999px}
+.journey-head .hint-p{display:inline-flex;align-items:center;gap:8px}
+.journey-head .hint-p::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.track-scroll{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.journey-head .hint-p::before{animation:none}}
+.tracks3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.t3{border-top:3px solid var(--ink);padding-top:12px;display:grid;gap:4px}
+.t3 b{font-family:var(--f-display);font-size:2rem;font-weight:800;line-height:1}
+.t3 span{font-weight:700}
+.t3 p{font-size:.88rem;color:var(--muted)}
+
+/* Approach */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--navy-line);border:1px solid var(--navy-line);border-radius:18px;overflow:hidden}
+.pr{background:var(--navy-2);padding:clamp(20px,2.6vw,30px);display:grid;gap:10px;align-content:start;min-width:0}
+.pr .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(0,157,246,.16);color:var(--sky)}
+.pr .ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pr h3{color:var(--on-navy)}
+.pr p{color:var(--navy-soft);font-size:.95rem}
+.pr .why{font-size:.84rem;color:var(--sky);border-top:1px dashed var(--navy-line);padding-top:10px;margin-top:4px}
+.anatomy{margin-top:clamp(48px,6vw,72px)}
+.anatomy h3{color:var(--on-navy);font-size:1.5rem;margin-bottom:6px}
+.anatomy > p{color:var(--navy-soft);margin-bottom:22px}
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;counter-reset:f}
+.step{background:var(--navy-2);border:1px solid var(--navy-line);border-radius:12px;padding:14px 12px;display:grid;gap:6px;align-content:start;counter-increment:f;min-width:0}
+.step::before{content:counter(f);font:700 .78rem var(--f-mono);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:var(--blue-ink)}
+.step b{font-family:var(--f-display);font-size:.98rem;color:var(--on-navy);line-height:1.2}
+.step span{font-size:.8rem;color:var(--navy-soft);line-height:1.35}
+.step.key{background:var(--yellow);border-color:var(--yellow)}
+.step.key b,.step.key span{color:var(--yellow-ink)}
+.step.key::before{background:var(--yellow-ink);color:var(--yellow)}
+
+/* Role */
+.role{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,80px);align-items:start}
+.role > *{min-width:0}
+.org{display:grid;gap:14px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px 18px;box-shadow:var(--shadow)}
+.node{border-radius:12px;padding:12px 14px;text-align:center;min-width:0}
+.node b{display:block;font-family:var(--f-display);font-size:.98rem;line-height:1.2}
+.node span{font-size:.8rem;color:var(--muted)}
+.node.me{background:var(--navy);color:var(--on-navy);padding:16px 22px}
+.node.me span{color:var(--sky)}
+.org .kids{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;position:relative;padding-top:16px}
+.org .kids::before{content:"";position:absolute;top:0;left:16.6%;right:16.6%;height:16px;border:2px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0}
+.org .kids .node{background:var(--tint)}
+.org .stem{width:2px;height:14px;background:var(--line);margin-bottom:-14px}
+.org .note{font-size:.82rem;color:var(--muted);text-align:center;max-width:36ch}
+.duties{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px}
+.duty{display:grid;gap:6px;align-content:start}
+.duty h3{display:flex;gap:10px;align-items:baseline}
+.duty h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--blue);flex:none;transform:translateY(-1px)}
+.duty p{color:var(--muted);font-size:.96rem}
+
+/* Process */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.lane{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,2.6vw,28px);min-width:0}
+.lane header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
+.lane header small{font:500 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;padding:10px 0;border-top:1px dashed var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 .78rem var(--f-mono);color:var(--blue);padding-top:3px}
+.steps b{font-weight:700}
+.steps span{display:block;color:var(--muted);font-size:.9rem}
+.gate{margin-top:18px;padding:20px 24px;border-radius:16px;background:var(--navy);color:var(--on-navy);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.gate .lock{width:44px;height:44px;border-radius:12px;background:var(--yellow);display:grid;place-items:center;flex:none}
+.gate .lock svg{width:22px;height:22px;stroke:var(--yellow-ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gate p{color:var(--navy-soft);flex:1;min-width:220px}
+.gate b{color:var(--on-navy);font-family:var(--f-display)}
+.timeline{margin-top:40px;overflow-x:auto}
+.tl{display:grid;grid-template-columns:repeat(10,minmax(76px,1fr));min-width:780px;row-gap:8px}
+.wk{font:500 .72rem var(--f-mono);color:var(--muted);padding:6px 8px;border-left:1px solid var(--line)}
+.bar{padding:10px 12px;border-radius:8px;font-size:.86rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b1{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.b2{background:var(--navy);color:var(--on-navy)}
+.b3{background:var(--blue);color:var(--blue-ink)}
+.b4{border:1.5px dashed var(--ink);color:var(--ink)}
+.b5{background:var(--yellow);color:var(--yellow-ink)}
+.tl-note{font-size:.84rem;color:var(--muted);margin-top:12px}
+
+/* AI */
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ai{background:var(--navy-2);border:1px solid var(--navy-line);border-radius:16px;padding:22px;display:grid;gap:8px;align-content:start;min-width:0}
+.ai .k{font:600 .7rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+.ai h3{color:var(--on-navy)}
+.ai p{color:var(--navy-soft);font-size:.94rem}
+.saving{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,40px);align-items:center;margin-top:18px;padding:clamp(22px,3vw,32px);border-radius:18px;background:var(--yellow);color:var(--yellow-ink)}
+.saving .big{font-family:var(--f-display);font-size:clamp(3.4rem,8vw,6rem);font-weight:900;line-height:.85;letter-spacing:-.04em}
+.saving h3{font-size:1.3rem;margin-bottom:6px}
+.saving p{max-width:58ch}
+.levers{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:280px}
+.levers span{font:600 .74rem var(--f-mono);border:1.5px solid var(--yellow-ink);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.rules{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.rules div{border:1px solid var(--navy-line);border-radius:12px;padding:14px;font-size:.88rem;color:var(--navy-soft);display:flex;gap:10px;align-items:flex-start}
+.rules div::before{content:"\2713";font:700 .8rem var(--f-mono);color:var(--yellow);padding-top:1px}
+
+/* Work */
+.compare{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);user-select:none;-webkit-user-select:none;background:var(--surface)}
+.compare img{display:block;width:100%;height:auto;pointer-events:none}
+.compare .top{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.compare .top img{height:100%;object-fit:cover}
+.compare .handle{position:absolute;top:0;bottom:0;left:50%;width:0;pointer-events:none}
+.compare .handle::before{content:"";position:absolute;top:0;bottom:0;left:-1.5px;width:3px;background:var(--yellow)}
+.compare .knob{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:var(--yellow);color:var(--yellow-ink);display:grid;place-items:center;font:700 1.1rem var(--f-mono);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.compare .tagL,.compare .tagR{position:absolute;top:14px;font:600 .74rem var(--f-mono);letter-spacing:.08em;background:rgba(9,11,41,.82);color:#fff;padding:6px 10px;border-radius:6px;pointer-events:none}
+.compare .tagL{left:14px}.compare .tagR{right:14px}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.cmp-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.92rem;color:var(--muted)}
+.cmp-cap b{color:var(--ink)}
+.devices{display:grid;grid-template-columns:1fr 300px;gap:clamp(20px,4vw,48px);align-items:center;margin-top:clamp(40px,6vw,64px)}
+.devices > *{min-width:0}
+.browser{border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--surface)}
+.browser .bar-top{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--tint);border-bottom:1px solid var(--line)}
+.browser .bar-top i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.browser .bar-top span{margin-left:12px;flex:1;max-width:340px;height:22px;border-radius:6px;background:var(--surface);font:500 .7rem var(--f-mono);color:var(--muted);display:flex;align-items:center;padding:0 10px;overflow:hidden;white-space:nowrap}
+.browser img{display:block;width:100%}
+.phone{justify-self:center;width:100%;max-width:280px;border-radius:40px;padding:12px;background:#0b0f2a;box-shadow:var(--shadow),inset 0 0 0 2px #262d5e;position:relative}
+.phone img{display:block;width:100%;border-radius:30px}
+.dev-cap{font-size:.9rem;color:var(--muted);margin-top:12px}
+.dev-cap b{color:var(--ink)}
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(40px,6vw,64px)}
+.shot{margin:0;min-width:0;display:grid;gap:10px;align-content:start}
+.shot button{all:unset;cursor:zoom-in;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.shot button:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/11;object-fit:cover;object-position:top;transition:transform .5s ease}
+.shot button:hover img{transform:scale(1.03)}
+.shot figcaption{font-size:.9rem;color:var(--muted);line-height:1.45}
+.shot figcaption b{color:var(--ink);display:block;font-family:var(--f-display);font-size:1rem}
+
+/* Video */
+.reel{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.reel figure{margin:0;min-width:0}
+.vbox{position:relative;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 20px 50px -20px rgba(0,0,0,.7)}
+.reel video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.cap{position:absolute;left:50%;transform:translateX(-50%);bottom:56px;max-width:88%;text-align:center;font:600 clamp(.82rem,1.6vw,1rem)/1.35 var(--f-body);background:rgba(9,11,41,.82);color:#fff;padding:5px 10px;border-radius:5px;pointer-events:none}
+.reel figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:.92rem;color:var(--navy-soft)}
+.reel figcaption b{color:var(--on-navy);font-family:var(--f-display);font-weight:600}
+.tc{font:500 .74rem var(--f-mono);white-space:nowrap;color:var(--sky)}
+.subsw{display:flex;gap:6px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.subsw span{font:500 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--navy-soft);margin-right:4px}
+.subsw button{font:700 .78rem var(--f-body);padding:5px 11px;border-radius:999px;border:1px solid var(--navy-line);background:transparent;color:var(--on-navy);cursor:pointer}
+.subsw button[aria-pressed="true"]{background:var(--blue);color:var(--blue-ink);border-color:var(--blue)}
+
+/* Activities */
+.acts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,30px);display:flex;flex-direction:column;gap:14px;min-width:0;box-shadow:var(--shadow)}
+.act.wide{grid-column:1 / -1}
+.act .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{font:600 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted)}
+.pill.design{background:var(--tint);border-color:transparent;color:var(--ink)}
+.act .task{background:var(--tint);border-left:4px solid var(--blue);padding:10px 14px;border-radius:4px;font-weight:700}
+.act .hint{font-size:.88rem;color:var(--muted)}
+.act .dn{font-size:.85rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;margin-top:auto}
+.act .dn b{color:var(--ink)}
+.btn{font:700 .95rem var(--f-body);padding:11px 16px;border-radius:10px;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;text-align:start;transition:background .15s ease}
+.btn:hover{background:var(--tint)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.slots{display:grid;gap:8px}
+.slot{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:10px;padding:10px 12px;min-height:46px;font-weight:700}
+.slot .num{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--blue);color:var(--blue-ink);font:600 .82rem var(--f-mono);flex:none}
+.slot.filled{border-style:solid;border-color:var(--ink)}
+.slot.next{border-color:var(--blue);background:var(--tint)}
+.fb{border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.fb b{display:block}
+.fb.good{background:var(--good-bg);color:var(--ink)}
+.fb.bad{background:var(--bad-bg);color:var(--ink)}
+.fb .ic{font:700 .9rem var(--f-mono);flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg)}
+.branch{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start}
+.branch > *{min-width:0}
+.branch img{width:100%;border-radius:12px;display:block;aspect-ratio:16/10;object-fit:cover}
+.branch .opts{display:grid;gap:8px}
+.progress{display:flex;gap:6px}
+.progress i{display:block;width:34px;height:6px;border-radius:3px;background:var(--line)}
+.progress i.on{background:var(--blue)}
+.deck{display:grid;gap:12px}
+.card{border:1.5px solid var(--ink);border-radius:14px;padding:22px 18px;font-family:var(--f-display);font-size:1.3rem;font-weight:700;text-align:center;min-height:100px;display:grid;place-items:center;background:var(--tint)}
+.tally{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.88rem}
+.tally div{border-top:2px solid var(--ink);padding-top:6px;min-width:0}
+.tally ul{margin:6px 0 0;padding-left:18px;color:var(--muted)}
+
+/* Wall */
+.wall{columns:4 240px;column-gap:12px}
+.wall button{all:unset;cursor:zoom-in;display:block;margin-bottom:12px;break-inside:avoid;border-radius:12px;overflow:hidden;position:relative}
+.wall button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.wall img{display:block;width:100%;height:auto;transition:transform .5s ease}
+.wall button:hover img{transform:scale(1.04)}
+.wall span{position:absolute;left:10px;bottom:10px;font:500 .68rem var(--f-mono);background:rgba(9,11,41,.8);color:#fff;padding:4px 8px;border-radius:5px}
+
+/* Results */
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.res{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:10px;align-content:start;min-width:0}
+.res b{font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.6rem);font-weight:800;line-height:1;letter-spacing:-.02em}
+.res p{color:var(--muted);font-size:.94rem}
+.res.hero-res{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.res.hero-res p{color:var(--navy-soft)}
+.res.hero-res b{color:var(--yellow)}
+.reflect{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,80px);margin-top:clamp(56px,8vw,96px);align-items:start}
+.reflect > *{min-width:0}
+.lessons{display:grid;border-top:1px solid var(--line)}
+.lesson{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:20px 0;border-bottom:1px solid var(--line)}
+.lesson .n{font:700 1.6rem var(--f-display);color:var(--blue);line-height:1}
+.lesson h3{margin-bottom:6px}
+.lesson p{color:var(--muted)}
+
+/* CTA */
+.cta{position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;left:-10%;right:-10%;top:-1px;height:clamp(60px,8vw,110px);background:var(--bg);border-radius:0 0 50% 50% / 0 0 100% 100%}
+.cta .wrap{position:relative;display:grid;justify-items:center;gap:20px;padding-top:clamp(40px,6vw,70px)}
+.cta h2{font-size:clamp(2.2rem,5vw,4rem);max-width:18ch}
+.cta .url{font:500 .9rem var(--f-mono);color:var(--sky)}
+footer{background:var(--navy);color:var(--navy-soft);font-size:.84rem;border-top:1px solid var(--navy-line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:24px 36px}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(1280px,94vw);max-height:92vh}
+dialog::backdrop{background:rgba(5,7,24,.9)}
+dialog img{display:block;max-width:100%;max-height:84vh;border-radius:10px;margin:0 auto}
+dialog p{color:#eef1fa;font-size:.92rem;margin-top:10px;text-align:center}
+dialog button{position:absolute;top:8px;right:8px;background:var(--yellow);color:var(--yellow-ink);border:0;border-radius:8px;font:700 .85rem var(--f-body);padding:8px 12px;cursor:pointer}
+
+@media (max-width:1000px){
+  .statgrid{grid-template-columns:repeat(3,1fr)}
+  .stat:nth-child(4){border-left:0}
+  .stat:nth-child(n+4){border-top:1px solid var(--line)}
+  .flow{grid-template-columns:repeat(4,1fr)}
+  .results{grid-template-columns:repeat(2,1fr)}
+  .rules{grid-template-columns:repeat(2,1fr)}
+  .saving{grid-template-columns:auto 1fr}
+  .levers{grid-column:1 / -1;justify-content:flex-start;max-width:none}
+}
+@media (max-width:860px){
+  .hero .wrap,.challenge,.role,.lanes,.reflect,.persona,.devices{grid-template-columns:1fr}
+  .principles,.ai-grid,.tracks3{grid-template-columns:1fr}
+  .reel,.acts{grid-template-columns:1fr}
+  .screens{grid-template-columns:1fr 1fr}
+  .branch{grid-template-columns:1fr}
+  .persona img{max-height:300px}
+  .brand span{display:none}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .statgrid{grid-template-columns:1fr 1fr}
+  .stat{border-left:1px solid var(--line)!important;border-top:1px solid var(--line)}
+  .stat:nth-child(odd){border-left:0!important}
+  .stat:nth-child(-n+2){border-top:0}
+  .constraints,.needs,.duties,.screens,.results,.rules{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .brief div{grid-template-columns:1fr;gap:2px}
+  .saving{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .org .kids{grid-template-columns:1fr}
+  .org .kids::before{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<nav class="topnav" aria-label="Case study sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Matchday Ready <span>· Capstone case study</span></a>
+    <div class="navlinks">
+      <a href="#challenge">Challenge</a><a href="#learners">Learners</a><a href="#approach">Approach</a><a href="#role">My role</a><a href="#process">Process</a><a href="#ai">AI</a><a href="#work">The work</a><a href="#try">Try it</a><a href="#results">Results</a>
+    </div>
+    <div class="lang" role="group" aria-label="Language / Lingua"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="it" aria-pressed="false">IT</button></div>
+  </div>
+  <div class="readbar" id="readbar"></div>
+</nav>
+
+<header class="hero on-navy" id="top">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <span class="badge-cap">Capstone project · 2026</span>
+      <h1>Matchday ready, <em>in two languages.</em></h1>
+      <p class="sub">I led the design and build of a bilingual Arabic–English training programme for the frontline stewards and marshals of a major international football tournament. It went from brief to LMS in about ten weeks, with an AI media pipeline and a team of three.</p>
+      <div class="ctas">
+        <button class="btn-cta primary" type="button" id="watch">Watch the intro film</button>
+        <a class="btn-cta ghost" href="#try">Try the activities</a>
+      </div>
+      <div class="facts"><span><b>Role</b> Lead Designer</span><span><b>Team</b> 1 ID · 2 AI video specialists</span><span><b>Format</b> SCORM 1.2 · AR / EN</span></div>
+    </div>
+    <div class="player">
+      <video id="hero-video" src="clips/intro.mp4" poster="clips/intro.jpg" playsinline preload="metadata" aria-label="Programme intro film with Arabic and English subtitles"></video>
+      <button class="play" type="button" id="hero-play" aria-label="Play the programme intro film">
+        <span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
+        <span class="lbl"><small>Programme intro film · 0:42</small>Meet the marshals. Arabic voice-over, AR + EN subtitles.</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="statgrid">
+      <div class="stat accent"><b data-count="64">64</b><span>SCORM packages delivered to the client's LMS</span></div>
+      <div class="stat"><b data-count="3">3</b><span>programme tracks: marshals, stewards, supervisors</span></div>
+      <div class="stat"><b>~10<small>wks</small></b><span>from kick-off to the main LMS delivery</span></div>
+      <div class="stat"><b data-count="30" data-suffix="%">30%</b><span>lower AI media spend than budgeted</span></div>
+      <div class="stat"><b data-count="95" data-suffix="%">95%</b><span>of review comments closed within 3 days</span></div>
+      <div class="stat"><b>0</b><span>missed delivery deadlines</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="challenge" style="padding-top:0">
+  <div class="wrap challenge">
+    <div>
+      <div class="head">
+        <span class="eyebrow">01 · The challenge</span>
+        <h2>Thousands of first-time stewards. <span class="hl">One shared standard.</span> Very little time.</h2>
+        <p class="lede">The client organises a major international football tournament. Every frontline marshal needed the same grounding in safety, crowd behaviour and fan service before the first match. Most would learn on a phone, in Arabic, between shifts.</p>
+      </div>
+      <dl class="brief">
+        <div><dt>Client</dt><dd>Tournament organiser, international football (NDA)</dd></div>
+        <div><dt>Learners</dt><dd>Marshals, stewards and supervisors, many new to event work</dd></div>
+        <div><dt>Platform</dt><dd>Client LMS · SCORM 1.2 with completion and scoring</dd></div>
+        <div><dt>Timeline</dt><dd>About ten weeks, with client review rounds inside it</dd></div>
+      </dl>
+    </div>
+    <div class="constraints">
+      <div class="cons"><span class="k">Language</span><h4>Arabic first</h4><p>Arabic is the main language, with English one tap away and a fully mirrored layout.</p></div>
+      <div class="cons"><span class="k">Device</span><h4>Phone first</h4><p>Designed for a phone screen between shifts, then scaled up to tablet and desktop.</p></div>
+      <div class="cons"><span class="k">Experience</span><h4>New to the role</h4><p>Many had never worked a stadium. Abstract rules would not stick. Situations would.</p></div>
+      <div class="cons"><span class="k">Risk</span><h4>Safety-critical</h4><p>Some answers cannot be "mostly right": evacuation, medical response, never touching a fan.</p></div>
+      <div class="cons"><span class="k">Culture</span><h4>Respectful by default</h4><p>Every scene had to read as right for a Gulf audience: dress, gender, gestures, faith.</p></div>
+      <div class="cons"><span class="k">Time</span><h4>Ten weeks</h4><p>A fixed tournament date and no room for a traditional film shoot.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="learners" class="band-sky">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">02 · The learners</span>
+      <h2>Design for the person in the hi-vis vest.</h2>
+    </div>
+    <div class="persona">
+      <img src="img/info-point.jpg" alt="A marshal in a hi-vis vest ready at an information point outside the stadium" loading="lazy">
+      <div class="body">
+        <span class="tag">Composite learner profile, drawn from the brief</span>
+        <h3>The first-time marshal</h3>
+        <blockquote>"Tell me what to do when it actually happens, and let me practise it before I'm standing at the gate."</blockquote>
+        <div class="needs">
+          <div><b>Short</b>Lessons that fit a break between shifts</div>
+          <div><b>Concrete</b>Real scenes at real gates, not slides of rules</div>
+          <div><b>Safe to fail</b>Practise mistakes on screen, not on match day</div>
+        </div>
+      </div>
+    </div>
+    <div class="journey">
+      <div class="journey-head"><h3>The frontline learning journey: 16 modules, 29 lessons</h3><p class="hint-p">Moving track · hover or tap to pause</p></div>
+      <div class="track-scroll" id="journey" tabindex="0" aria-label="Module journey. Hover, focus or tap to pause.">
+        <div class="track">
+          <div class="mod"><div class="pic"><img src="img/gate.jpg" alt="" loading="lazy"><span class="n">M1</span><span class="flag">Start</span></div><div class="tx"><h4>Welcome &amp; the tournament</h4><p>Baseline, event types, hospitality</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/info-point.jpg" alt="" loading="lazy"><span class="n">M2</span></div><div class="tx"><h4>Role &amp; conduct</h4><p>Authority, duties and posts, code of conduct</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/family.jpg" alt="" loading="lazy"><span class="n">M3</span></div><div class="tx"><h4>The spectator journey</h4><p>Venue, customer service, wayfinding</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/calm-words.jpg" alt="" loading="lazy"><span class="n">M4</span></div><div class="tx"><h4>Crowds &amp; communication</h4><p>Talking to crowds, crowd psychology</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/control-room.jpg" alt="" loading="lazy"><span class="n">M5</span></div><div class="tx"><h4>Emergency services</h4><p>Briefing, fire safety</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/crowd-top.jpg" alt="" loading="lazy"><span class="n">M6</span></div><div class="tx"><h4>Crowd safety</h4><p>Density, flow, lessons from history</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/terrace.jpg" alt="" loading="lazy"><span class="n">M7–8</span></div><div class="tx"><h4>Ingress &amp; egress</h4><p>Queues, stop and hold</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/lost-child.jpg" alt="" loading="lazy"><span class="n">M9</span></div><div class="tx"><h4>People skills</h4><p>Reporting, de-escalation, safeguarding</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/flare.jpg" alt="" loading="lazy"><span class="n">M10</span></div><div class="tx"><h4>Hazards &amp; emergencies</h4><p>Suspicious items, evacuation, alerts</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/stairs.jpg" alt="" loading="lazy"><span class="n">M11</span></div><div class="tx"><h4>Medical response</h4><p>Emergencies and CPR</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/cutaway.jpg" alt="" loading="lazy"><span class="n">M12</span></div><div class="tx"><h4>Accessibility</h4><p>Assisting fans, accessible routes</p></div></div>
+          <div class="mod"><div class="pic"><img src="img/crossing.jpg" alt="" loading="lazy"><span class="n">M13–15</span></div><div class="tx"><h4>On the ground</h4><p>Traffic, observing your area, tickets, info points</p></div></div>
+          <div class="mod end"><div class="pic"><span class="n">M16</span><span class="flag">Finish</span></div><div class="tx"><h4>Study guide &amp; final quiz</h4><p>Plus a field-notes pack for the shift</p></div></div>
+        </div>
+      </div>
+      <div class="tracks3">
+        <div class="t3"><b>29 + 1</b><span>Frontline marshal track</span><p>Micro-lessons plus a field-notes and resources pack.</p></div>
+        <div class="t3"><b>32</b><span>General steward track</span><p>The tournament, conduct, spectator services, accessibility, match-day readiness.</p></div>
+        <div class="t3"><b>32</b><span>Supervisor track</span><p>Leadership, briefings, crowd science, risk, incident management.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="on-navy">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">03 · Design approach</span>
+      <h2>Six decisions that shaped <span class="hl">every lesson.</span></h2>
+      <p class="lede">Each principle answers one constraint from the brief. Together they made the programme consistent enough to build fast, and specific enough to change behaviour.</p>
+    </div>
+    <div class="principles">
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><h3>Micro, phone-first lessons</h3><p>Short sections with one task per screen. Progress is saved, so a learner can stop when the shift starts.</p><p class="why">Answers: little time, on a phone</p></div>
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c-1 4-4 7-7 8"/><path d="M13 21l4-9 4 9M14.5 18h5"/></svg></span><h3>Arabic-first, not translated after</h3><p>Layouts were built to mirror from day one. Approved Arabic from a human translator was used word for word.</p><p class="why">Answers: language, trust</p></div>
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><h3>Show it, then let them do it</h3><p>Each lesson opens on a real situation, models the right response, then hands the decision to the learner.</p><p class="why">Answers: new to the role</p></div>
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 3v4a6 6 0 0 0 12 0V3"/><path d="M12 13v8M8 21h8"/></svg></span><h3>Consequences, not quizzes</h3><p>Branching choices show what happens next. A wrong answer explains why, then lets the learner try again.</p><p class="why">Answers: safe to fail</p></div>
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>A must-pass safety rule</h3><p>Safety-critical questions must be answered correctly to pass, whatever the overall score.</p><p class="why">Answers: safety-critical content</p></div>
+      <div class="pr"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4.5 4-4.5 1.2 0 2 .4 2 .4"/></svg></span><h3>One recurring cast</h3><p>The same marshals appear across all lessons, so learners recognise colleagues and situations, not stock models.</p><p class="why">Answers: culture, recognition</p></div>
+    </div>
+    <div class="anatomy">
+      <h3>Anatomy of a lesson</h3>
+      <p>Every lesson followed the same seven-beat rhythm, so learners always knew what came next and the team could build fast.</p>
+      <div class="flow">
+        <div class="step"><b>Hook</b><span>A short scene that goes wrong</span></div>
+        <div class="step"><b>Teach</b><span>One idea per screen, with a visual</span></div>
+        <div class="step"><b>Watch it done</b><span>A marshal models the right response</span></div>
+        <div class="step"><b>Try it</b><span>Order, sort, spot the risk</span></div>
+        <div class="step key"><b>Apply it</b><span>Branching scenarios with consequences</span></div>
+        <div class="step"><b>Summary</b><span>A downloadable job aid for the shift</span></div>
+        <div class="step"><b>Check</b><span>Quiz with the must-pass safety rule</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="role">
+  <div class="wrap role">
+    <div>
+      <div class="head">
+        <span class="eyebrow">04 · My role</span>
+        <h2>Lead designer, developer and keeper of the timeline.</h2>
+      </div>
+      <div class="org" aria-label="Team structure">
+        <div class="node me"><b>Lead Designer (me)</b><span>Design · development · timelines</span></div>
+        <div class="stem" aria-hidden="true"></div>
+        <div class="kids">
+          <div class="node"><b>Instructional designer</b><span>Scripts &amp; content</span></div>
+          <div class="node"><b>AI video specialist</b><span>Clips &amp; pictures</span></div>
+          <div class="node"><b>AI video specialist</b><span>Clips &amp; pictures</span></div>
+        </div>
+        <p class="note">Working with the client's subject-matter reviewers and a professional Arabic translator.</p>
+      </div>
+    </div>
+    <div class="duties">
+      <div class="duty"><h3>Designed and developed the courses</h3><p>Designed the learning and built every lesson myself on one shared course engine: scenario-first, bilingual and responsive.</p></div>
+      <div class="duty"><h3>Managed the timelines</h3><p>Turned the client's source documents into a module map and a delivery plan, then kept every lesson moving through it in waves.</p></div>
+      <div class="duty"><h3>Led a team of three</h3><p>Set daily priorities for one instructional designer and two AI video specialists, reviewed their work and kept one source of truth for every decision.</p></div>
+      <div class="duty"><h3>Built the AI media pipeline</h3><p>Reference frames, prompt checks and a scored QA step for every generated picture and clip before it reached a lesson.</p></div>
+      <div class="duty"><h3>Owned quality</h3><p>Automated screenshots of every screen in both languages, fact and language reviews, and cultural-respect checks.</p></div>
+      <div class="duty"><h3>Ran the client reviews</h3><p>Answered each review comment with a priority, a fix type and a status, and closed it only once the fix had shipped.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="band-sky">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">05 · The cycle</span>
+      <h2>Two processes that <span class="hl">never mix.</span></h2>
+      <p class="lede">Content is written and approved first. Production only reads the approved release. A late media fix can never undo an approved word, and an approved word can never be quietly changed during the build.</p>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <header><h3>Content</h3><small>Words &amp; decisions</small></header>
+        <ol class="steps">
+          <li><div><b>Intake</b><span>Client sources, facts, glossary and brand rules in one place</span></div></li>
+          <li><div><b>Design</b><span>Objectives, screen plan and interaction choice per lesson</span></div></li>
+          <li><div><b>Write</b><span>English script drafted with AI, edited by hand</span></div></li>
+          <li><div><b>Approve</b><span>Subject-matter sign-off, logged as numbered decisions</span></div></li>
+          <li><div><b>Translate</b><span>Arabic from a professional human translator, used verbatim</span></div></li>
+          <li><div><b>Release</b><span>A versioned, approved release: production's only input</span></div></li>
+        </ol>
+      </div>
+      <div class="lane">
+        <header><h3>Production</h3><small>Media &amp; build</small></header>
+        <ol class="steps">
+          <li><div><b>Media</b><span>AI pictures, clips and voice-over from approved references</span></div></li>
+          <li><div><b>Build</b><span>One course engine renders every lesson in both languages</span></div></li>
+          <li><div><b>QA</b><span>Every screen at four sizes × two languages, plus fact and language review</span></div></li>
+          <li><div><b>Package</b><span>SCORM 1.2 zip, manifest checked, handed to the LMS team</span></div></li>
+          <li><div><b>Review</b><span>Client comments answered row by row, fixed in the right lane</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="gate">
+      <span class="lock"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+      <p><b>The QA gate.</b> No package shipped until every step was closed and current. If anything a step depended on changed, the step went stale and ran again.</p>
+    </div>
+    <div class="timeline" role="img" aria-label="Approximate ten-week timeline">
+      <div class="tl">
+        <div class="wk">Wk 1</div><div class="wk">Wk 2</div><div class="wk">Wk 3</div><div class="wk">Wk 4</div><div class="wk">Wk 5</div><div class="wk">Wk 6</div><div class="wk">Wk 7</div><div class="wk">Wk 8</div><div class="wk">Wk 9</div><div class="wk">Wk 10</div>
+        <div class="bar b1" style="grid-column:1 / 3">Discovery &amp; system design</div>
+        <div class="bar b2" style="grid-column:2 / 8">Content, approval &amp; translation in waves</div>
+        <div class="bar b3" style="grid-column:4 / 9">AI media, build &amp; QA</div>
+        <div class="bar b4" style="grid-column:8 / 10">Client review round</div>
+        <div class="bar b5" style="grid-column:9 / 11">Fixes, SCORM &amp; LMS delivery</div>
+      </div>
+    </div>
+    <p class="tl-note">Approximate. Lessons moved through in waves, so content, media and build overlapped from week 3.</p>
+  </div>
+</section>
+
+<section id="ai" class="on-navy">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">06 · Use of AI</span>
+      <h2>AI did the volume. <span class="hl">People made the calls.</span></h2>
+      <p class="lede">Hundreds of scenes and clips with the same cast, in a realistic stadium, would have been impossible on this timeline with a film shoot. AI made it possible. Hard rules kept it on-brief and respectful.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai"><span class="k">Pictures</span><h3>A consistent cast</h3><p>Generated from approved reference images, so the same marshals, uniforms and venue appear in every lesson.</p></div>
+      <div class="ai"><span class="k">Video</span><h3>Stills first, then motion</h3><p>Each clip was animated from an approved still, so motion was paid for only once the frame was right.</p></div>
+      <div class="ai"><span class="k">Voice</span><h3>Arabic voice-over</h3><p>AI narration and character voices, directed for a natural regional delivery, speaking every approved word.</p></div>
+      <div class="ai"><span class="k">Writing</span><h3>Drafts, never final</h3><p>AI drafted English scripts. A person edited, the client approved, and the Arabic came only from a human translator.</p></div>
+      <div class="ai"><span class="k">QA</span><h3>Scored before use</h3><p>Each picture and clip was checked against its prompt, the references, the neighbouring screens and the cultural rules. Below the bar meant redo.</p></div>
+      <div class="ai"><span class="k">Automation</span><h3>Thousands of screenshots</h3><p>Every screen captured in both languages at phone, tablet and desktop sizes on each build.</p></div>
+    </div>
+    <div class="saving">
+      <span class="big">−30%</span>
+      <div><h3>AI media spend, against budget</h3><p>Generation cost dropped by about a third while the number of media pieces went up.</p></div>
+      <div class="levers" aria-label="How the saving was made"><span>Prompt checks first</span><span>Reused reference frames</span><span>Stills before video</span><span>Strict redo rule</span></div>
+    </div>
+    <div class="rules">
+      <div>No lettering or text in generated media</div>
+      <div>Modest dress and gender-appropriate interaction in every scene</div>
+      <div>No real people depicted</div>
+      <div>Approved Arabic always used word for word</div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">07 · The work</span>
+      <h2>One lesson, <span class="hl">two languages,</span> every screen.</h2>
+      <p class="lede">Drag the handle to compare the same screen in English and Arabic. The whole interface mirrors: navigation, progress, feedback and buttons.</p>
+    </div>
+    <div class="compare" id="compare">
+      <img src="shots/decision-en.jpg" alt="Lesson screen in English: a marshal guides a family to their seats, with feedback marking the best choice" draggable="false">
+      <div class="top"><img src="shots/decision-ar.jpg" alt="The same screen in Arabic with a mirrored right-to-left layout" draggable="false"></div>
+      <div class="handle" aria-hidden="true"><span class="knob">⟷</span></div>
+      <span class="tagL">EN</span><span class="tagR">AR · RTL</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare English and Arabic screens">
+    </div>
+    <div class="cmp-cap"><span><b>Branching decision, with feedback.</b> The best answer explains why in one line.</span><span>Client branding removed</span></div>
+    <div class="devices">
+      <div>
+        <div class="browser">
+          <div class="bar-top"><i></i><i></i><i></i><span>lms / course / conflict-and-de-escalation</span></div>
+          <img src="shots/branching.jpg" alt="Scenario screen: a seat dispute between fans with three response options" loading="lazy">
+        </div>
+        <p class="dev-cap"><b>Apply it.</b> Four branching scenarios close the conflict lesson. Every option is a full sentence a marshal could actually say.</p>
+      </div>
+      <div>
+        <div class="phone"><img src="shots/phone.jpg" alt="The decision feedback screen at phone width" loading="lazy"></div>
+        <p class="dev-cap" style="text-align:center"><b>Phone first.</b> Most learners studied between shifts.</p>
+      </div>
+    </div>
+    <div class="screens">
+      <figure class="shot"><button data-full="shots/spot.jpg" aria-label="Enlarge: spot the risk"><img src="shots/spot.jpg" alt="Screen asking what a marshal noticed in a crowded concourse image" loading="lazy"></button><figcaption><b>Spot the risk</b>Learners find what the marshal noticed before being told.</figcaption></figure>
+      <figure class="shot"><button data-full="shots/positioning.jpg" aria-label="Enlarge: positioning task"><img src="shots/positioning.jpg" alt="Overhead view of a stand asking where the learner would stand" loading="lazy"></button><figcaption><b>Where would you stand?</b>Positioning taught from an overhead view of the stand.</figcaption></figure>
+      <figure class="shot"><button data-full="shots/casestudy.jpg" aria-label="Enlarge: history case study"><img src="shots/casestudy.jpg" alt="Case study screen about a crowd incident at a past football final" loading="lazy"></button><figcaption><b>Learning from history</b>Public crowd incidents retold as tap-through case studies.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="video" class="on-navy">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">08 · Scenario video</span>
+      <h2>Clips that teach by showing.</h2>
+      <p class="lede">Full lesson clips, all AI-generated. The sound is the Arabic voice-over learners heard. Switch subtitles between English and Italian under each clip.</p>
+    </div>
+    <div class="reel">
+      <figure><video data-subs="conflict-hook" src="clips/conflict-hook.mp4" poster="clips/conflict-hook.jpg" controls playsinline preload="none"></video><figcaption><b>Hook: a dispute at the gate</b><span class="tc">0:19</span></figcaption></figure>
+      <figure><video data-subs="deescalation" src="clips/deescalation.mp4" poster="clips/deescalation.jpg" controls playsinline preload="none"></video><figcaption><b>Watch it done: calming an upset fan</b><span class="tc">0:30</span></figcaption></figure>
+      <figure><video data-subs="queues" src="clips/queues.mp4" poster="clips/queues.jpg" controls playsinline preload="none"></video><figcaption><b>Ingress: how a queue builds</b><span class="tc">0:40</span></figcaption></figure>
+      <figure><video data-subs="crowd-mood" src="clips/crowd-mood.mp4" poster="clips/crowd-mood.jpg" controls playsinline preload="none"></video><figcaption><b>Crowd psychology: the mood of a stand</b><span class="tc">0:36</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="try">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">09 · Try it yourself</span>
+      <h2>Play three of the activities.</h2>
+      <p class="lede">Working versions rebuilt for this page from the course content. Each one gives instant feedback that explains why, and lets you try again. In the course, every activity also runs in Arabic.</p>
+    </div>
+    <div class="acts">
+      <div class="act wide" id="act-branch">
+        <div class="meta"><span class="pill design">Branching scenario · apply</span><div class="progress" aria-hidden="true"><i></i><i></i><i></i></div></div>
+        <h3>The family seat dispute</h3>
+        <div class="branch">
+          <img id="br-img" src="img/act/scene-d1.jpg" alt="">
+          <div style="display:grid;gap:12px">
+            <p class="pill" id="br-step" style="justify-self:start">Decision 1 of 3</p>
+            <p id="br-scene"></p>
+            <p class="task">What do you do? Every choice has a consequence.</p>
+            <div class="opts" id="br-opts"></div>
+            <div id="br-fb" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="dn"><b>Design note.</b> The wrong options are mistakes real marshals make: taking sides, the right facts in the wrong words, physical contact. Each one gets its own consequence, not a generic "incorrect".</p>
+      </div>
+      <div class="act" id="act-order">
+        <div class="meta"><span class="pill design">Ordering · understand</span><span class="pill" id="or-count">0 / 4</span></div>
+        <h3>The marshal's line</h3>
+        <p class="task">Tap the four steps into order.</p>
+        <p class="hint">Tap the step that comes next.</p>
+        <div class="slots" id="or-slots"></div>
+        <div class="row" id="or-pool"></div>
+        <div id="or-fb" aria-live="polite"></div>
+        <p class="dn"><b>Design note.</b> Four words a marshal can recall under pressure. The order is the lesson.</p>
+      </div>
+      <div class="act" id="act-sort">
+        <div class="meta"><span class="pill design">Card sort · apply</span><span class="pill" id="so-count">1 / 7</span></div>
+        <h3>A suspicious bag: my job or not my job?</h3>
+        <p class="task">One card at a time. Is it your job?</p>
+        <div class="deck">
+          <div class="card" id="so-card" aria-live="polite"></div>
+          <div class="row" id="so-btns">
+            <button class="btn solid" type="button" data-col="0">My job</button>
+            <button class="btn" type="button" data-col="1">Not my job</button>
+          </div>
+          <div id="so-fb" aria-live="polite"></div>
+          <div class="tally"><div><b>My job</b><ul id="so-l0"></ul></div><div><b>Not my job</b><ul id="so-l1"></ul></div></div>
+        </div>
+        <p class="dn"><b>Design note.</b> Knowing where your role stops matters as much as knowing where it starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="images" class="band-sky">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">10 · The visual world</span>
+      <h2>A recurring cast, one venue, many situations.</h2>
+    </div>
+    <div class="wall">
+      <button data-full="img/calm-words.jpg"><img src="img/calm-words.jpg" alt="Marshal speaking calmly to fans in a stand" loading="lazy"><span>Conflict · calm words</span></button>
+      <button data-full="img/crowd-top.jpg"><img src="img/crowd-top.jpg" alt="High-density crowd seen from above" loading="lazy"><span>Crowd density</span></button>
+      <button data-full="img/gate.jpg"><img src="img/gate.jpg" alt="Marshal at a queue barrier outside the venue" loading="lazy"><span>Ingress</span></button>
+      <button data-full="img/control-room.jpg"><img src="img/control-room.jpg" alt="Venue operations room with camera screens" loading="lazy"><span>Reporting &amp; escalation</span></button>
+      <button data-full="img/stairs.jpg"><img src="img/stairs.jpg" alt="Marshal directing fans down stairs" loading="lazy"><span>Evacuation routes</span></button>
+      <button data-full="img/lost-child.jpg"><img src="img/lost-child.jpg" alt="Marshal kneeling to talk to a child in the stand" loading="lazy"><span>Safeguarding</span></button>
+      <button data-full="img/cutaway.jpg"><img src="img/cutaway.jpg" alt="Cutaway illustration of a stadium" loading="lazy"><span>Venue cutaway</span></button>
+      <button data-full="img/crossing.jpg"><img src="img/crossing.jpg" alt="Marshal at a road crossing near the venue at night" loading="lazy"><span>Traffic &amp; crossings</span></button>
+      <button data-full="img/family.jpg"><img src="img/family.jpg" alt="Marshal helping a family find their seats" loading="lazy"><span>Fan service</span></button>
+      <button data-full="img/flare.jpg"><img src="img/flare.jpg" alt="Smoke from a flare in a crowded stand" loading="lazy"><span>Hazard spotting</span></button>
+      <button data-full="img/terrace.jpg"><img src="img/terrace.jpg" alt="Overhead view of a stand and gangway" loading="lazy"><span>Crowd flow</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">11 · Results</span>
+      <h2>On time, under budget, <span class="hl">still growing.</span></h2>
+    </div>
+    <div class="results">
+      <div class="res hero-res"><b>64</b><p>SCORM packages delivered to the LMS, each through the QA gate.</p></div>
+      <div class="res"><b>On time</b><p>Every package reached the LMS by its delivery date.</p></div>
+      <div class="res"><b>3 days</b><p>to close 95% of the first client review's 80+ comments, each with a note on what changed.</p></div>
+      <div class="res"><b>−30%</b><p>AI media spend against budget, with more media made.</p></div>
+    </div>
+    <div class="reflect">
+      <div class="head" style="margin:0">
+        <span class="eyebrow">12 · Reflection</span>
+        <h2 style="font-size:clamp(1.8rem,3.4vw,2.6rem)">What I'd take into the next programme.</h2>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><span class="n">1</span><div><h3>Separate words from pixels</h3><p>Keeping content approval apart from production stopped late media fixes from reopening approved text. It also let the team work in parallel without stepping on each other.</p></div></div>
+        <div class="lesson"><span class="n">2</span><div><h3>Sign off the picture before the motion</h3><p>Approving stills first, then animating, was the biggest single cost lever. Any clip changed after its sign-off cost review time again, so freeze earlier.</p></div></div>
+        <div class="lesson"><span class="n">3</span><div><h3>A comment is closed when the fix ships</h3><p>Not when it is answered. Closing rows only on delivery kept the client's trust through every review round.</p></div></div>
+        <div class="lesson"><span class="n">4</span><div><h3>Build the system, not just the course</h3><p>One engine, one lesson rhythm and one QA gate meant the next two tracks started at full speed.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta on-navy" style="padding-bottom:clamp(64px,9vw,110px)">
+  <div class="wrap">
+    <span class="eyebrow">Next match</span>
+    <h2>Have a programme that has to be <em style="font-style:normal;color:var(--yellow)">ready by a date?</em></h2>
+    <p class="lede" style="text-align:center">I design and build learning programmes that ship on time, in more than one language, using AI where it earns its place.</p>
+    <a class="btn-cta primary" href="https://www.beclearcomm.net/" target="_blank" rel="noopener">Get in touch at BEClear Communication</a>
+    <span class="url">beclearcomm.net</span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Client name, logos and proprietary content withheld. All scenes and people shown are AI-generated training media.</span>
+    <span>Lead Designer · Capstone project 2026</span>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Enlarged image">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+var SUBS={"conflict-hook": {"en": [[0.8, 3.8, "Fan: My cousin has my ticket inside! Let me in!"], [5.001, 9.001, "Marshal: Rules are rules. No ticket, no entry. Calm down!"], [10.801, 12.601, "Narrator: Watch the fan's face."], [12.802, 14.902, "Narrator: Is this getting better or worse?"], [15.102, 16.502, "Narrator: What would you do?"]], "it": [[0.8, 3.8, "Tifoso: Mio cugino ha il mio biglietto dentro! Fatemi entrare!"], [5.001, 9.001, "Steward: Le regole sono regole. Niente biglietto, niente ingresso. Si calmi!"], [10.801, 12.601, "Narratore: Guarda il viso del tifoso."], [12.802, 14.902, "Narratore: La situazione migliora o peggiora?"], [15.102, 16.502, "Narratore: Tu cosa faresti?"]]}, "crowd-mood": {"en": [[0.2, 1.9, "Narrator: The same stand, the same people."], [2.8, 4.9, "Narrator: Ninety seconds ago they were celebrating."], [9.0, 12.5, "Narrator: Now they're angry."], [13.8, 18.5, "Narrator: Nobody in this crowd changed - but the mood did."], [23.8, 33.0, "Narrator: In this lesson you'll learn how football crowds think and feel, what changes their mood, and how to spot it early."]], "it": [[0.2, 1.9, "Narratore: La stessa tribuna, le stesse persone."], [2.8, 4.9, "Narratore: Novanta secondi fa stavano festeggiando."], [9.0, 12.5, "Narratore: Ora sono arrabbiati."], [13.8, 18.5, "Narratore: Nessuno in questa folla è cambiato, ma l'umore sì."], [23.8, 33.0, "Narratore: In questa lezione imparerai come pensano e cosa provano i tifosi di calcio, cosa cambia il loro umore e come accorgertene in tempo."]]}, "deescalation": {"en": [[0.5, 1.8, "Narrator: Now watch the marshal."], [1.9, 6.04, "Narrator: She stands to the side, out of reach, hands open."], [6.2, 7.36, "Narrator: She listens first."], [7.6, 11.36, "Marshal: I understand - your cousin is inside and you don't want to miss kick-off."], [12.4, 14.8, "Marshal: Can you call him? Is the ticket on his phone?"], [16.2, 21.38, "Marshal: Let's step out of the queue to this side. You call your cousin, and I'll ask my supervisor what we can do."], [24.7, 29.36, "Narrator: Notice she never says \"no entry\" - or \"calm down\"."]], "it": [[0.5, 1.8, "Narratore: Ora guarda la steward."], [1.9, 6.04, "Narratore: Si mette di lato, fuori portata, con le mani aperte."], [6.2, 7.36, "Narratore: Prima di tutto ascolta."], [7.6, 11.36, "Steward: Capisco: suo cugino è dentro e lei non vuole perdersi il calcio d'inizio."], [12.4, 14.8, "Steward: Può chiamarlo? Il biglietto è sul suo telefono?"], [16.2, 21.38, "Steward: Spostiamoci fuori dalla fila, da questa parte. Lei chiama suo cugino e io chiedo al mio supervisore cosa possiamo fare."], [24.7, 29.36, "Narratore: Nota che non dice mai \"niente ingresso\", né \"si calmi\"."]]}, "queues": {"en": [[0.5, 2.5, "Narrator: Twenty minutes to kick-off."], [2.8, 5.0, "Narrator: Thousands of fans at one gate."], [6.0, 12.5, "Narrator: The crowd bulges, people push in, and the emergency lane disappears."], [20.5, 28.5, "Narrator: Then it's the same fans - but in a zig-zag queue, with marshals at the turns and the lane clear."], [32.5, 35.0, "Narrator: What changed?"]], "it": [[0.5, 2.5, "Narratore: Venti minuti al calcio d'inizio."], [2.8, 5.0, "Narratore: Migliaia di tifosi davanti a un solo cancello."], [6.0, 12.5, "Narratore: La folla si allarga, la gente spinge e la corsia di emergenza scompare."], [20.5, 28.5, "Narratore: Poi gli stessi tifosi, ma in una fila a zig-zag, con gli steward alle curve e la corsia libera."], [32.5, 35.0, "Narratore: Che cosa è cambiato?"]]}};
+var IT={"Matchday Ready": "Matchday Ready", "· Capstone case study": "· Caso di studio finale", "Challenge": "La sfida", "Learners": "Destinatari", "Approach": "Approccio", "My role": "Il mio ruolo", "Process": "Processo", "The work": "Il lavoro", "Try it": "Provalo", "Results": "Risultati", "Capstone project · 2026": "Progetto finale · 2026", "Matchday ready,": "Pronti per la partita,", "in two languages.": "in due lingue.", "I led the design and build of a bilingual Arabic–English training programme for the frontline stewards and marshals of a major international football tournament. It went from brief to LMS in about ten weeks, with an AI media pipeline and a team of three.": "Ho guidato la progettazione e lo sviluppo di un programma formativo bilingue arabo–inglese per gli steward e i marshal in prima linea di un grande torneo internazionale di calcio. Dal brief all'LMS in circa dieci settimane, con una pipeline di media generati con l'IA e un team di tre persone.", "Watch the intro film": "Guarda il video introduttivo", "Try the activities": "Prova le attività", "Role": "Ruolo", "Lead Designer": "Lead Designer", "Team": "Team", "1 ID · 2 AI video specialists": "1 instructional designer · 2 specialisti video IA", "Format": "Formato", "Programme intro film · 0:42": "Video introduttivo · 0:42", "Meet the marshals. Arabic voice-over, AR + EN subtitles.": "Ecco i marshal. Voce narrante in arabo, sottotitoli AR + EN.", "SCORM packages delivered to the client's LMS": "pacchetti SCORM consegnati nell'LMS del cliente", "programme tracks: marshals, stewards, supervisors": "percorsi formativi: marshal, steward, supervisori", "wks": "sett.", "from kick-off to the main LMS delivery": "dall'avvio alla consegna principale nell'LMS", "lower AI media spend than budgeted": "di spesa in meno per i media IA rispetto al budget", "of review comments closed within 3 days": "dei commenti di revisione chiusi entro 3 giorni", "missed delivery deadlines": "scadenze di consegna mancate", "01 · The challenge": "01 · La sfida", "Thousands of first-time stewards.": "Migliaia di steward alla prima esperienza.", "One shared standard.": "Uno standard comune.", "Very little time.": "Pochissimo tempo.", "The client organises a major international football tournament. Every frontline marshal needed the same grounding in safety, crowd behaviour and fan service before the first match. Most would learn on a phone, in Arabic, between shifts.": "Il cliente organizza un grande torneo internazionale di calcio. Ogni marshal in prima linea doveva avere le stesse basi su sicurezza, comportamento della folla e servizio ai tifosi prima della prima partita. La maggior parte avrebbe studiato sul telefono, in arabo, tra un turno e l'altro.", "Client": "Cliente", "Tournament organiser, international football (NDA)": "Organizzatore del torneo, calcio internazionale (NDA)", "Marshals, stewards and supervisors, many new to event work": "Marshal, steward e supervisori, molti alla prima esperienza negli eventi", "Platform": "Piattaforma", "Client LMS · SCORM 1.2 with completion and scoring": "LMS del cliente · SCORM 1.2 con completamento e punteggio", "Timeline": "Tempi", "About ten weeks, with client review rounds inside it": "Circa dieci settimane, inclusi i cicli di revisione del cliente", "Language": "Lingua", "Arabic first": "Prima l'arabo", "Arabic is the main language, with English one tap away and a fully mirrored layout.": "L'arabo è la lingua principale, l'inglese è a un tocco di distanza e il layout è completamente speculare.", "Device": "Dispositivo", "Phone first": "Prima il telefono", "Designed for a phone screen between shifts, then scaled up to tablet and desktop.": "Progettato per lo schermo del telefono tra un turno e l'altro, poi adattato a tablet e desktop.", "Experience": "Esperienza", "New to the role": "Nuovi nel ruolo", "Many had never worked a stadium. Abstract rules would not stick. Situations would.": "Molti non avevano mai lavorato in uno stadio. Le regole astratte non sarebbero rimaste. Le situazioni sì.", "Risk": "Rischio", "Safety-critical": "Critico per la sicurezza", "Some answers cannot be \"mostly right\": evacuation, medical response, never touching a fan.": "Alcune risposte non possono essere \"quasi giuste\": evacuazione, primo soccorso, non toccare mai un tifoso.", "Culture": "Cultura", "Respectful by default": "Rispettoso per principio", "Every scene had to read as right for a Gulf audience: dress, gender, gestures, faith.": "Ogni scena doveva risultare appropriata per un pubblico del Golfo: abbigliamento, genere, gesti, fede.", "Time": "Tempo", "Ten weeks": "Dieci settimane", "A fixed tournament date and no room for a traditional film shoot.": "Una data del torneo fissa e nessuno spazio per riprese tradizionali.", "02 · The learners": "02 · I destinatari", "Design for the person in the hi-vis vest.": "Progettare per chi indossa il gilet ad alta visibilità.", "Composite learner profile, drawn from the brief": "Profilo composito del discente, tratto dal brief", "The first-time marshal": "Il marshal alla prima esperienza", "\"Tell me what to do when it actually happens, and let me practise it before I'm standing at the gate.\"": "\"Dimmi cosa fare quando succede davvero, e fammi esercitare prima di trovarmi al cancello.\"", "Short": "Brevi", "Lessons that fit a break between shifts": "Lezioni che stanno in una pausa tra i turni", "Concrete": "Concrete", "Real scenes at real gates, not slides of rules": "Scene reali a cancelli reali, non slide di regole", "Safe to fail": "Sbagliare senza rischi", "Practise mistakes on screen, not on match day": "Sbagliare sullo schermo, non il giorno della partita", "The frontline learning journey: 16 modules, 29 lessons": "Il percorso in prima linea: 16 moduli, 29 lezioni", "Moving track · hover or tap to pause": "Percorso in movimento · passa sopra o tocca per fermarlo", "Start": "Inizio", "Welcome & the tournament": "Benvenuto e il torneo", "Baseline, event types, hospitality": "Livello iniziale, tipi di evento, ospitalità", "Role & conduct": "Ruolo e condotta", "Authority, duties and posts, code of conduct": "Autorità, compiti e postazioni, codice di condotta", "The spectator journey": "Il percorso dello spettatore", "Venue, customer service, wayfinding": "Impianto, servizio clienti, orientamento", "Crowds & communication": "Folla e comunicazione", "Talking to crowds, crowd psychology": "Parlare alla folla, psicologia della folla", "Emergency services": "Servizi di emergenza", "Briefing, fire safety": "Briefing, sicurezza antincendio", "Crowd safety": "Sicurezza della folla", "Density, flow, lessons from history": "Densità, flussi, lezioni dalla storia", "Ingress & egress": "Ingresso e uscita", "Queues, stop and hold": "Code, stop e attesa", "People skills": "Competenze relazionali", "Reporting, de-escalation, safeguarding": "Segnalazione, de-escalation, tutela", "Hazards & emergencies": "Pericoli ed emergenze", "Suspicious items, evacuation, alerts": "Oggetti sospetti, evacuazione, allerte", "Medical response": "Primo soccorso", "Emergencies and CPR": "Emergenze e RCP", "Accessibility": "Accessibilità", "Assisting fans, accessible routes": "Assistenza ai tifosi, percorsi accessibili", "On the ground": "Sul campo", "Traffic, observing your area, tickets, info points": "Traffico, osservazione della zona, biglietti, punti informazioni", "Finish": "Fine", "Study guide & final quiz": "Guida allo studio e quiz finale", "Plus a field-notes pack for the shift": "Più un kit di appunti per il turno", "Frontline marshal track": "Percorso marshal in prima linea", "Micro-lessons plus a field-notes and resources pack.": "Micro-lezioni più un kit di appunti e risorse.", "General steward track": "Percorso steward generale", "The tournament, conduct, spectator services, accessibility, match-day readiness.": "Il torneo, la condotta, i servizi agli spettatori, l'accessibilità, la preparazione al giorno della partita.", "Supervisor track": "Percorso supervisori", "Leadership, briefings, crowd science, risk, incident management.": "Leadership, briefing, scienza della folla, rischio, gestione degli incidenti.", "03 · Design approach": "03 · Approccio progettuale", "Six decisions that shaped": "Sei decisioni che hanno dato forma a", "every lesson.": "ogni lezione.", "Each principle answers one constraint from the brief. Together they made the programme consistent enough to build fast, and specific enough to change behaviour.": "Ogni principio risponde a un vincolo del brief. Insieme hanno reso il programma abbastanza coerente da costruirlo in fretta, e abbastanza concreto da cambiare i comportamenti.", "Micro, phone-first lessons": "Micro-lezioni pensate per il telefono", "Short sections with one task per screen. Progress is saved, so a learner can stop when the shift starts.": "Sezioni brevi con un compito per schermata. I progressi vengono salvati, così si può interrompere quando inizia il turno.", "Answers: little time, on a phone": "Risponde a: poco tempo, sul telefono", "Arabic-first, not translated after": "Prima l'arabo, non tradotto dopo", "Layouts were built to mirror from day one. Approved Arabic from a human translator was used word for word.": "I layout sono stati costruiti speculari fin dal primo giorno. L'arabo approvato di un traduttore professionista è stato usato parola per parola.", "Answers: language, trust": "Risponde a: lingua, fiducia", "Show it, then let them do it": "Mostrarlo, poi farlo fare", "Each lesson opens on a real situation, models the right response, then hands the decision to the learner.": "Ogni lezione si apre su una situazione reale, mostra la risposta giusta, poi lascia la decisione al discente.", "Answers: new to the role": "Risponde a: nuovi nel ruolo", "Consequences, not quizzes": "Conseguenze, non quiz", "Branching choices show what happens next. A wrong answer explains why, then lets the learner try again.": "Le scelte ramificate mostrano cosa succede dopo. Una risposta sbagliata spiega il perché, poi permette di riprovare.", "Answers: safe to fail": "Risponde a: sbagliare senza rischi", "A must-pass safety rule": "Una regola di sicurezza da superare per forza", "Safety-critical questions must be answered correctly to pass, whatever the overall score.": "Le domande critiche per la sicurezza devono avere la risposta giusta per superare il test, qualunque sia il punteggio totale.", "Answers: safety-critical content": "Risponde a: contenuti critici per la sicurezza", "One recurring cast": "Un cast ricorrente", "The same marshals appear across all lessons, so learners recognise colleagues and situations, not stock models.": "Gli stessi marshal compaiono in tutte le lezioni, così i discenti riconoscono colleghi e situazioni, non modelli da catalogo.", "Answers: culture, recognition": "Risponde a: cultura, riconoscibilità", "Anatomy of a lesson": "Anatomia di una lezione", "Every lesson followed the same seven-beat rhythm, so learners always knew what came next and the team could build fast.": "Ogni lezione seguiva lo stesso ritmo in sette tempi, così i discenti sapevano sempre cosa veniva dopo e il team poteva costruire in fretta.", "Hook": "Aggancio", "A short scene that goes wrong": "Una breve scena che va storta", "Teach": "Spiegazione", "One idea per screen, with a visual": "Un'idea per schermata, con un'immagine", "Watch it done": "Guarda come si fa", "A marshal models the right response": "Un marshal mostra la risposta giusta", "Order, sort, spot the risk": "Ordina, classifica, individua il rischio", "Apply it": "Applicalo", "Branching scenarios with consequences": "Scenari ramificati con conseguenze", "Summary": "Riepilogo", "A downloadable job aid for the shift": "Una scheda pratica scaricabile per il turno", "Check": "Verifica", "Quiz with the must-pass safety rule": "Quiz con la regola di sicurezza obbligatoria", "04 · My role": "04 · Il mio ruolo", "Lead designer, developer and keeper of the timeline.": "Lead designer, sviluppatore e custode della tabella di marcia.", "Lead Designer (me)": "Lead Designer (io)", "Design · development · timelines": "Progettazione · sviluppo · tempi", "Instructional designer": "Instructional designer", "Scripts & content": "Copioni e contenuti", "AI video specialist": "Specialista video IA", "Clips & pictures": "Clip e immagini", "Working with the client's subject-matter reviewers and a professional Arabic translator.": "In collaborazione con gli esperti di contenuto del cliente e un traduttore professionista di arabo.", "Designed and developed the courses": "Ho progettato e sviluppato i corsi", "Designed the learning and built every lesson myself on one shared course engine: scenario-first, bilingual and responsive.": "Ho progettato l'apprendimento e costruito personalmente ogni lezione su un unico motore di corso: basato su scenari, bilingue e responsive.", "Managed the timelines": "Ho gestito i tempi", "Turned the client's source documents into a module map and a delivery plan, then kept every lesson moving through it in waves.": "Ho trasformato i documenti del cliente in una mappa dei moduli e in un piano di consegna, poi ho fatto avanzare ogni lezione a ondate.", "Led a team of three": "Ho guidato un team di tre persone", "Set daily priorities for one instructional designer and two AI video specialists, reviewed their work and kept one source of truth for every decision.": "Ho fissato le priorità quotidiane per un instructional designer e due specialisti video IA, ho rivisto il loro lavoro e mantenuto un'unica fonte di riferimento per ogni decisione.", "Built the AI media pipeline": "Ho costruito la pipeline dei media IA", "Reference frames, prompt checks and a scored QA step for every generated picture and clip before it reached a lesson.": "Fotogrammi di riferimento, controllo dei prompt e un controllo qualità a punteggio per ogni immagine e clip generata, prima di inserirla in una lezione.", "Owned quality": "Ho garantito la qualità", "Automated screenshots of every screen in both languages, fact and language reviews, and cultural-respect checks.": "Screenshot automatici di ogni schermata in entrambe le lingue, revisioni dei contenuti e della lingua, e controlli di rispetto culturale.", "Ran the client reviews": "Ho gestito le revisioni del cliente", "Answered each review comment with a priority, a fix type and a status, and closed it only once the fix had shipped.": "Ho risposto a ogni commento con una priorità, un tipo di correzione e uno stato, chiudendolo solo dopo la consegna della correzione.", "05 · The cycle": "05 · Il ciclo", "Two processes that": "Due processi che", "never mix.": "non si mescolano mai.", "Content is written and approved first. Production only reads the approved release. A late media fix can never undo an approved word, and an approved word can never be quietly changed during the build.": "Prima si scrivono e si approvano i contenuti. La produzione legge solo la versione approvata. Una correzione tardiva dei media non può annullare un testo approvato, e un testo approvato non può essere cambiato di nascosto durante lo sviluppo.", "Content": "Contenuti", "Words & decisions": "Testi e decisioni", "Intake": "Raccolta", "Client sources, facts, glossary and brand rules in one place": "Fonti del cliente, dati, glossario e regole del brand in un unico posto", "Design": "Progettazione", "Objectives, screen plan and interaction choice per lesson": "Obiettivi, piano delle schermate e scelta delle interazioni per ogni lezione", "Write": "Scrittura", "English script drafted with AI, edited by hand": "Copione inglese abbozzato con l'IA, rivisto a mano", "Approve": "Approvazione", "Subject-matter sign-off, logged as numbered decisions": "Approvazione degli esperti, registrata come decisioni numerate", "Translate": "Traduzione", "Arabic from a professional human translator, used verbatim": "Arabo di un traduttore professionista, usato alla lettera", "Release": "Rilascio", "A versioned, approved release: production's only input": "Una versione approvata e numerata: l'unico input della produzione", "Production": "Produzione", "Media & build": "Media e sviluppo", "Media": "Media", "AI pictures, clips and voice-over from approved references": "Immagini, clip e voce narrante IA da riferimenti approvati", "Build": "Sviluppo", "One course engine renders every lesson in both languages": "Un unico motore genera ogni lezione in entrambe le lingue", "Every screen at four sizes × two languages, plus fact and language review": "Ogni schermata in quattro formati × due lingue, più revisione dei contenuti e della lingua", "Package": "Pacchetto", "SCORM 1.2 zip, manifest checked, handed to the LMS team": "Zip SCORM 1.2, manifest verificato, consegnato al team LMS", "Review": "Revisione", "Client comments answered row by row, fixed in the right lane": "Commenti del cliente gestiti riga per riga, corretti nel flusso giusto", "The QA gate.": "Il cancello qualità.", "No package shipped until every step was closed and current. If anything a step depended on changed, the step went stale and ran again.": "Nessun pacchetto partiva finché ogni fase non era chiusa e aggiornata. Se cambiava qualcosa da cui una fase dipendeva, la fase andava rifatta.", "Wk 1": "Sett. 1", "Wk 2": "Sett. 2", "Wk 3": "Sett. 3", "Wk 4": "Sett. 4", "Wk 5": "Sett. 5", "Wk 6": "Sett. 6", "Wk 7": "Sett. 7", "Wk 8": "Sett. 8", "Wk 9": "Sett. 9", "Wk 10": "Sett. 10", "Discovery & system design": "Analisi e progettazione del sistema", "Content, approval & translation in waves": "Contenuti, approvazione e traduzione a ondate", "AI media, build & QA": "Media IA, sviluppo e controllo qualità", "Client review round": "Revisione del cliente", "Fixes, SCORM & LMS delivery": "Correzioni, SCORM e consegna nell'LMS", "Approximate. Lessons moved through in waves, so content, media and build overlapped from week 3.": "Indicativo. Le lezioni avanzavano a ondate, quindi contenuti, media e sviluppo si sono sovrapposti dalla settimana 3.", "06 · Use of AI": "06 · Uso dell'IA", "AI did the volume.": "L'IA ha fatto i volumi.", "People made the calls.": "Le persone hanno preso le decisioni.", "Hundreds of scenes and clips with the same cast, in a realistic stadium, would have been impossible on this timeline with a film shoot. AI made it possible. Hard rules kept it on-brief and respectful.": "Centinaia di scene e clip con lo stesso cast, in uno stadio realistico, sarebbero state impossibili in questi tempi con delle riprese. L'IA lo ha reso possibile. Regole rigide l'hanno mantenuta fedele al brief e rispettosa.", "Pictures": "Immagini", "A consistent cast": "Un cast coerente", "Generated from approved reference images, so the same marshals, uniforms and venue appear in every lesson.": "Generate da immagini di riferimento approvate, così gli stessi marshal, divise e impianto compaiono in ogni lezione.", "Video": "Video", "Stills first, then motion": "Prima le immagini fisse, poi il movimento", "Each clip was animated from an approved still, so motion was paid for only once the frame was right.": "Ogni clip è stata animata da un fotogramma approvato, così il movimento si pagava solo quando l'inquadratura era giusta.", "Voice": "Voce", "Arabic voice-over": "Voce narrante in arabo", "AI narration and character voices, directed for a natural regional delivery, speaking every approved word.": "Narrazione e voci dei personaggi con l'IA, dirette per una pronuncia regionale naturale, pronunciando ogni parola approvata.", "Writing": "Scrittura", "Drafts, never final": "Bozze, mai versioni finali", "AI drafted English scripts. A person edited, the client approved, and the Arabic came only from a human translator.": "L'IA ha abbozzato i copioni in inglese. Una persona li ha rivisti, il cliente li ha approvati, e l'arabo è arrivato solo da un traduttore professionista.", "Scored before use": "Valutati prima dell'uso", "Each picture and clip was checked against its prompt, the references, the neighbouring screens and the cultural rules. Below the bar meant redo.": "Ogni immagine e clip è stata confrontata con il suo prompt, i riferimenti, le schermate vicine e le regole culturali. Sotto la soglia voleva dire rifarla.", "Automation": "Automazione", "Thousands of screenshots": "Migliaia di screenshot", "Every screen captured in both languages at phone, tablet and desktop sizes on each build.": "Ogni schermata catturata in entrambe le lingue, nei formati telefono, tablet e desktop, a ogni build.", "AI media spend, against budget": "Spesa per i media IA, rispetto al budget", "Generation cost dropped by about a third while the number of media pieces went up.": "Il costo di generazione è sceso di circa un terzo mentre il numero di media è aumentato.", "Prompt checks first": "Prima il controllo dei prompt", "Reused reference frames": "Fotogrammi di riferimento riutilizzati", "Stills before video": "Immagini fisse prima del video", "Strict redo rule": "Regola rigida sui rifacimenti", "No lettering or text in generated media": "Nessuna scritta o testo nei media generati", "Modest dress and gender-appropriate interaction in every scene": "Abbigliamento sobrio e interazioni appropriate tra i generi in ogni scena", "No real people depicted": "Nessuna persona reale raffigurata", "Approved Arabic always used word for word": "Arabo approvato usato sempre parola per parola", "07 · The work": "07 · Il lavoro", "One lesson,": "Una lezione,", "two languages,": "due lingue,", "every screen.": "ogni schermata.", "Drag the handle to compare the same screen in English and Arabic. The whole interface mirrors: navigation, progress, feedback and buttons.": "Trascina il cursore per confrontare la stessa schermata in inglese e in arabo. Tutta l'interfaccia si rispecchia: navigazione, avanzamento, feedback e pulsanti.", "Branching decision, with feedback.": "Decisione ramificata, con feedback.", "The best answer explains why in one line.": "La risposta migliore spiega il perché in una riga.", "Client branding removed": "Marchio del cliente rimosso", "Apply it.": "Applicalo.", "Four branching scenarios close the conflict lesson. Every option is a full sentence a marshal could actually say.": "Quattro scenari ramificati chiudono la lezione sui conflitti. Ogni opzione è una frase completa che un marshal potrebbe dire davvero.", "Phone first.": "Prima il telefono.", "Most learners studied between shifts.": "La maggior parte dei discenti ha studiato tra un turno e l'altro.", "Spot the risk": "Individua il rischio", "Learners find what the marshal noticed before being told.": "I discenti scoprono cosa ha notato il marshal prima che venga detto.", "Where would you stand?": "Dove ti posizioneresti?", "Positioning taught from an overhead view of the stand.": "Il posizionamento insegnato da una vista dall'alto della tribuna.", "Learning from history": "Imparare dalla storia", "Public crowd incidents retold as tap-through case studies.": "Incidenti di folla noti, raccontati come casi di studio da sfogliare.", "08 · Scenario video": "08 · Video di scenario", "Clips that teach by showing.": "Clip che insegnano mostrando.", "Full lesson clips, all AI-generated. The sound is the Arabic voice-over learners heard. Switch subtitles between English and Italian under each clip.": "Clip complete delle lezioni, tutte generate con l'IA. L'audio è la voce narrante in arabo ascoltata dai discenti. Sotto ogni clip puoi scegliere i sottotitoli in inglese o in italiano.", "Hook: a dispute at the gate": "Aggancio: una lite al cancello", "Watch it done: calming an upset fan": "Guarda come si fa: calmare un tifoso arrabbiato", "Ingress: how a queue builds": "Ingresso: come si forma una coda", "Crowd psychology: the mood of a stand": "Psicologia della folla: l'umore di una tribuna", "09 · Try it yourself": "09 · Prova tu", "Play three of the activities.": "Gioca con tre delle attività.", "Working versions rebuilt for this page from the course content. Each one gives instant feedback that explains why, and lets you try again. In the course, every activity also runs in Arabic.": "Versioni funzionanti ricostruite per questa pagina dai contenuti del corso. Ognuna dà un feedback immediato che spiega il perché e permette di riprovare. Nel corso, ogni attività funziona anche in arabo.", "Branching scenario · apply": "Scenario ramificato · applicare", "The family seat dispute": "La lite per i posti della famiglia", "What do you do? Every choice has a consequence.": "Cosa fai? Ogni scelta ha una conseguenza.", "Design note.": "Nota di progettazione.", "The wrong options are mistakes real marshals make: taking sides, the right facts in the wrong words, physical contact. Each one gets its own consequence, not a generic \"incorrect\".": "Le opzioni sbagliate sono errori che i marshal fanno davvero: schierarsi, i fatti giusti con le parole sbagliate, il contatto fisico. Ognuna ha la sua conseguenza, non un generico \"sbagliato\".", "Ordering · understand": "Ordinamento · comprendere", "The marshal's line": "La linea del marshal", "Tap the four steps into order.": "Tocca i quattro passi nell'ordine giusto.", "Tap the step that comes next.": "Tocca il passo che viene dopo.", "Four words a marshal can recall under pressure. The order is the lesson.": "Quattro parole che un marshal ricorda anche sotto pressione. L'ordine è la lezione.", "Card sort · apply": "Classificazione · applicare", "A suspicious bag: my job or not my job?": "Una borsa sospetta: è compito mio o no?", "One card at a time. Is it your job?": "Una carta alla volta. È compito tuo?", "My job": "Compito mio", "Not my job": "Non è compito mio", "Knowing where your role stops matters as much as knowing where it starts.": "Sapere dove finisce il tuo ruolo conta quanto sapere dove comincia.", "10 · The visual world": "10 · Il mondo visivo", "A recurring cast, one venue, many situations.": "Un cast ricorrente, un impianto, tante situazioni.", "Conflict · calm words": "Conflitti · parole calme", "Crowd density": "Densità della folla", "Ingress": "Ingresso", "Reporting & escalation": "Segnalazione ed escalation", "Evacuation routes": "Vie di evacuazione", "Safeguarding": "Tutela", "Venue cutaway": "Spaccato dell'impianto", "Traffic & crossings": "Traffico e attraversamenti", "Fan service": "Servizio ai tifosi", "Hazard spotting": "Individuare i pericoli", "Crowd flow": "Flusso della folla", "11 · Results": "11 · Risultati", "On time, under budget,": "Nei tempi, sotto budget,", "still growing.": "e ancora in crescita.", "SCORM packages delivered to the LMS, each through the QA gate.": "pacchetti SCORM consegnati nell'LMS, ognuno dopo il cancello qualità.", "On time": "Nei tempi", "Every package reached the LMS by its delivery date.": "Ogni pacchetto è arrivato nell'LMS entro la data di consegna.", "3 days": "3 giorni", "to close 95% of the first client review's 80+ comments, each with a note on what changed.": "per chiudere il 95% degli oltre 80 commenti della prima revisione del cliente, ognuno con una nota su cosa è cambiato.", "AI media spend against budget, with more media made.": "di spesa per i media IA rispetto al budget, producendo più media.", "12 · Reflection": "12 · Riflessione", "What I'd take into the next programme.": "Cosa porterei nel prossimo programma.", "Separate words from pixels": "Separare le parole dai pixel", "Keeping content approval apart from production stopped late media fixes from reopening approved text. It also let the team work in parallel without stepping on each other.": "Tenere l'approvazione dei contenuti separata dalla produzione ha evitato che le correzioni tardive dei media riaprissero testi approvati. E ha permesso al team di lavorare in parallelo senza pestarsi i piedi.", "Sign off the picture before the motion": "Approvare l'immagine prima del movimento", "Approving stills first, then animating, was the biggest single cost lever. Any clip changed after its sign-off cost review time again, so freeze earlier.": "Approvare prima le immagini fisse e poi animarle è stata la leva di costo più importante. Ogni clip modificata dopo l'approvazione costava di nuovo tempo di revisione: meglio congelare prima.", "A comment is closed when the fix ships": "Un commento è chiuso quando la correzione è consegnata", "Not when it is answered. Closing rows only on delivery kept the client's trust through every review round.": "Non quando si risponde. Chiudere le righe solo alla consegna ha mantenuto la fiducia del cliente in ogni ciclo di revisione.", "Build the system, not just the course": "Costruire il sistema, non solo il corso", "One engine, one lesson rhythm and one QA gate meant the next two tracks started at full speed.": "Un motore, un ritmo di lezione e un cancello qualità hanno permesso ai due percorsi successivi di partire a pieno ritmo.", "Next match": "Prossima partita", "Have a programme that has to be": "Hai un programma che deve essere", "ready by a date?": "pronto per una data?", "I design and build learning programmes that ship on time, in more than one language, using AI where it earns its place.": "Progetto e sviluppo programmi formativi consegnati nei tempi, in più lingue, usando l'IA dove serve davvero.", "Get in touch at BEClear Communication": "Contattami su BEClear Communication", "Client name, logos and proprietary content withheld. All scenes and people shown are AI-generated training media.": "Nome del cliente, loghi e contenuti riservati omessi. Tutte le scene e le persone mostrate sono media formativi generati con l'IA.", "Lead Designer · Capstone project 2026": "Lead Designer · Progetto finale 2026", "Close": "Chiudi", "Subtitles": "Sottotitoli", "English": "Inglese", "Off": "Nessuno", "Correct.": "Giusto.", "Not quite.": "Non proprio.", "Next decision": "Decisione successiva", "Play again": "Gioca ancora", "Try again": "Riprova", "Do it again": "Rifallo", "Next card": "Carta successiva", "Start again": "Ricomincia", "Ten minutes to kick-off. A family says a group of young men are in their seats. The young men say: 'We were here first.' Both sides are talking at once.": "Dieci minuti al calcio d'inizio. Una famiglia dice che un gruppo di ragazzi è seduto ai loro posti. I ragazzi rispondono: 'Eravamo qui prima noi.' Parlano tutti insieme.", "Greet both sides: 'Welcome. Let's sort this out. May I see both sets of tickets, please?'": "Saluta entrambe le parti: 'Benvenuti. Risolviamo insieme. Posso vedere i biglietti di tutti, per favore?'", "Neutral, calm, and starts with facts.": "Neutrale, calmo, e parte dai fatti.", "Tell the young men: 'Families come first - move.'": "Di' ai ragazzi: 'Prima le famiglie - spostatevi.'", "Taking sides inflames it.": "Schierarsi peggiora la situazione.", "Tell the family to find other seats.": "Di' alla famiglia di cercare altri posti.", "Their tickets may be right - check first.": "I loro biglietti potrebbero essere giusti - prima controlla.", "Greet both sides. Ask, politely, to see both tickets.": "Saluta entrambe le parti. Chiedi con gentilezza di vedere entrambi i biglietti.", "The young men's tickets are for row 18; they are in row 8.": "I biglietti dei ragazzi sono per la fila 18; sono seduti nella fila 8.", "'Your seats are row 18 - just up there. Let me show you. Enjoy the match!'": "'I vostri posti sono nella fila 18 - proprio lassù. Vi accompagno. Buona partita!'", "Kind, clear, with directions - no blame.": "Gentile, chiaro, con indicazioni - senza colpe.", "'You're in the wrong seats. Get out.'": "'Siete nei posti sbagliati. Andatevene.'", "Right facts, wrong words.": "Fatti giusti, parole sbagliate.", "Hold one of them by the arm and guide him up.": "Prendi uno di loro per il braccio e accompagnalo su.", "Unsafe. Never touch.": "Pericoloso. Non toccare mai.", "If someone is in the wrong seat, show them the right one - kindly.": "Se qualcuno è al posto sbagliato, mostragli quello giusto - con gentilezza.", "One young man refuses: 'We're staying.' His friends laugh.": "Un ragazzo si rifiuta: 'Noi restiamo qui.' I suoi amici ridono.", "Stay polite, offer the family a safe place to wait, and call your supervisor.": "Resta cortese, offri alla famiglia un posto sicuro dove aspettare e chiama il tuo supervisore.", "Explain - ask - report. Your supervisor and security take it from here.": "Spiega - chiedi - segnala. Da qui se ne occupano il supervisore e la sicurezza.", "Tell him he'll be thrown out of the stadium.": "Digli che verrà cacciato dallo stadio.", "A threat - and marshals cannot eject anyone.": "Una minaccia - e i marshal non possono allontanare nessuno.", "Give up and walk away without telling anyone.": "Lascia perdere e vai via senza dirlo a nessuno.", "Nobody else knows there is a problem.": "Nessun altro sa che c'è un problema.", "If they won't move, call your supervisor. You never move anyone by force.": "Se non si spostano, chiama il tuo supervisore. Non sposti mai nessuno con la forza.", "OBSERVE": "OSSERVA", "CALM WITH WORDS": "CALMA CON LE PAROLE", "REPORT": "SEGNALA", "ESCALATE": "ESCALATION", "Your line never changes.": "La tua linea non cambia mai.", "The order is: observe, calm with words, report, escalate.": "L'ordine è: osserva, calma con le parole, segnala, escalation.", "Observe - watch and listen. Calm it with words. Report it to your supervisor. If it is not working, or not safe, escalate.": "Osserva - guarda e ascolta. Calma con le parole. Segnala al tuo supervisore. Se non funziona, o non è sicuro, fai escalation.", "Watch and report": "Osservare e segnalare", "Your job is to watch, report and follow instructions.": "Il tuo compito è osservare, segnalare e seguire le istruzioni.", "Command the incident": "Comandare l'intervento", "The police lead every suspicious-item incident.": "La polizia guida ogni intervento per oggetti sospetti.", "Move the people next to it away calmly": "Allontanare con calma le persone vicine", "Move people away from the immediate area calmly, at once.": "Allontana subito e con calma le persone dalla zona immediata.", "Deal with the item": "Occuparsi dell'oggetto", "Police and specialists deal with the item.": "Dell'oggetto si occupano la polizia e gli specialisti.", "Follow instructions": "Seguire le istruzioni", "Decide to evacuate": "Decidere l'evacuazione", "Evacuation is not your decision. Wait for the message.": "L'evacuazione non la decidi tu. Aspetta il messaggio.", "Set the cordon distance": "Stabilire la distanza del cordone", "A wider cordon and distances come on instruction.": "Un cordone più ampio e le distanze arrivano su istruzione.", "This is your job.": "Questo è compito tuo.", "This is not your job.": "Questo non è compito tuo.", "AI": "IA"};
+(function(){
+  var LANG='en';
+  function T(s){ return (LANG==='it' && IT[s]) || s; }
+  function el(t,c,x){var e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e;}
+  var subSetters=[], rerender=[];
+
+  var hv=document.getElementById('hero-video'), hp=document.getElementById('hero-play');
+  function playHero(){ hp.hidden=true; hv.controls=true; var p=hv.play(); if(p&&p.catch) p.catch(function(){}); }
+  hp.addEventListener('click',playHero);
+  document.getElementById('watch').addEventListener('click',function(){ document.getElementById('top').scrollIntoView({behavior:'smooth'}); playHero(); });
+
+  var bar=document.getElementById('readbar'), links=[].slice.call(document.querySelectorAll('.navlinks a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight; bar.style.transform='scaleX('+(max>0?h.scrollTop/max:0)+')';
+    var y=h.scrollTop+120, cur=-1; secs.forEach(function(s,i){ if(s&&s.offsetTop<=y) cur=i; });
+    links.forEach(function(a,i){a.classList.toggle('active',i===cur)});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting) return; io.unobserve(e.target);
+      var b=e.target, to=+b.dataset.count, suf=b.dataset.suffix||'', t0=null;
+      function f(ts){ if(!t0) t0=ts; var k=Math.min(1,(ts-t0)/900), v=Math.round(to*(1-Math.pow(1-k,3))); b.textContent=v+suf; if(k<1) requestAnimationFrame(f); }
+      requestAnimationFrame(f);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(b){io.observe(b)});
+  }
+
+  /* Journey track: duplicate the cards so the loop is seamless; tap toggles pause on touch screens */
+  var jr=document.getElementById('journey'), jt=jr.querySelector('.track');
+  if(!reduce){ [].slice.call(jt.children).forEach(function(m){ var c=m.cloneNode(true); c.setAttribute('aria-hidden','true'); jt.appendChild(c); }); }
+  jr.addEventListener('click',function(){ jr.classList.toggle('paused'); });
+
+  var cmp=document.getElementById('compare'), rng=cmp.querySelector('input'), top=cmp.querySelector('.top'), hd=cmp.querySelector('.handle');
+  function setCmp(v){ top.style.clipPath='inset(0 0 0 '+v+'%)'; hd.style.left=v+'%'; }
+  rng.addEventListener('input',function(){setCmp(rng.value)}); setCmp(50);
+
+  var lb=document.getElementById('lb'), img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap');
+  document.querySelectorAll('[data-full]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=b.querySelector('img'); img.src=b.getAttribute('data-full'); img.alt=i?i.alt:'';
+      var fc=b.closest('figure'); cap.textContent=fc?fc.querySelector('figcaption').textContent:((b.querySelector('span')||{}).textContent||'');
+      if(lb.showModal) lb.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb) lb.close()});
+
+  document.querySelectorAll('.reel figure').forEach(function(fig){
+    var v=fig.querySelector('video'), data=SUBS[v.getAttribute('data-subs')]||{}, lang='en';
+    var box=el('div','vbox'); v.parentNode.insertBefore(box,v); box.appendChild(v);
+    var c=el('div','cap'); box.appendChild(c);
+    function draw(){ var q=(data[lang]||[]).filter(function(x){return v.currentTime>=x[0]&&v.currentTime<=x[1]})[0]; c.textContent=q?q[2]:''; c.hidden=!q; }
+    v.addEventListener('timeupdate',draw); v.addEventListener('seeked',draw);
+    var sw=el('div','subsw'); sw.appendChild(el('span',null,'Subtitles'));
+    function setSub(l){ lang=l; sw.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.l===lang?'true':'false')}); draw(); }
+    [['en','English'],['it','Italiano'],['off','Off']].forEach(function(o){
+      var b=el('button',null,o[1]); b.type='button'; b.dataset.l=o[0]; b.setAttribute('aria-pressed',o[0]==='en'?'true':'false');
+      b.addEventListener('click',function(){ setSub(o[0]); });
+      sw.appendChild(b);
+    });
+    subSetters.push(setSub);
+    fig.appendChild(sw); draw();
+  });
+
+  function fb(box,good,head,why){
+    box.innerHTML=''; var d=el('div','fb '+(good?'good':'bad')); var i=el('span','ic',good?'✓':'✕'); i.setAttribute('aria-hidden','true');
+    var t=el('div'); t.appendChild(el('b',null,T(good?'Correct.':'Not quite.')+' '+T(head))); if(why&&why.trim()) t.appendChild(el('span',null,' '+T(why.trim())));
+    d.appendChild(i); d.appendChild(t); box.appendChild(d);
+  }
+
+  var steps=[
+    {img:'scene-d1',good:'good-d1',scene:"Ten minutes to kick-off. A family says a group of young men are in their seats. The young men say: 'We were here first.' Both sides are talking at once.",
+     opts:[["Greet both sides: 'Welcome. Let's sort this out. May I see both sets of tickets, please?'",1,"Neutral, calm, and starts with facts."],
+           ["Tell the young men: 'Families come first - move.'",0,"Taking sides inflames it."],
+           ["Tell the family to find other seats.",0,"Their tickets may be right - check first."]],
+     why:"Greet both sides. Ask, politely, to see both tickets."},
+    {img:'scene-d2',good:'good-d2',scene:"The young men's tickets are for row 18; they are in row 8.",
+     opts:[["'Your seats are row 18 - just up there. Let me show you. Enjoy the match!'",1,"Kind, clear, with directions - no blame."],
+           ["'You're in the wrong seats. Get out.'",0,"Right facts, wrong words."],
+           ["Hold one of them by the arm and guide him up.",0,"Unsafe. Never touch."]],
+     why:"If someone is in the wrong seat, show them the right one - kindly."},
+    {img:'scene-d3',good:'good-d3',scene:"One young man refuses: 'We're staying.' His friends laugh.",
+     opts:[["Stay polite, offer the family a safe place to wait, and call your supervisor.",1,"Explain - ask - report. Your supervisor and security take it from here."],
+           ["Tell him he'll be thrown out of the stadium.",0,"A threat - and marshals cannot eject anyone."],
+           ["Give up and walk away without telling anyone.",0,"Nobody else knows there is a problem."]],
+     why:"If they won't move, call your supervisor. You never move anyone by force."}
+  ];
+  var bi=0, bImg=document.getElementById('br-img'), bScene=document.getElementById('br-scene'), bOpts=document.getElementById('br-opts'), bFb=document.getElementById('br-fb'), bStep=document.getElementById('br-step'), bBars=document.querySelectorAll('#act-branch .progress i');
+  function shuffle(a){a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t;} return a;}
+  function showStep(){
+    var s=steps[bi]; bImg.src='img/act/'+s.img+'.jpg'; bImg.alt='Scenario scene, decision '+(bi+1); bScene.textContent=T(s.scene); bStep.textContent=LANG==='it'?'Decisione '+(bi+1)+' di 3':'Decision '+(bi+1)+' of 3';
+    bBars.forEach(function(b,k){b.className=k<=bi?'on':''}); bFb.innerHTML=''; bOpts.innerHTML='';
+    shuffle(s.opts).forEach(function(o){
+      var b=el('button','btn',T(o[0])); b.type='button';
+      b.addEventListener('click',function(){
+        bOpts.querySelectorAll('button').forEach(function(x){x.disabled=true});
+        fb(bFb,!!o[1],o[2],o[1]?'':s.why);
+        var nx=el('button','btn solid',T(o[1]?(bi<2?'Next decision':'Play again'):'Try again')); nx.type='button'; nx.style.marginTop='10px';
+        if(o[1]) bImg.src='img/act/'+s.good+'.jpg';
+        nx.addEventListener('click',function(){ if(o[1]) bi=(bi<2)?bi+1:0; showStep(); });
+        bFb.appendChild(nx);
+      });
+      bOpts.appendChild(b);
+    });
+  }
+  showStep(); rerender.push(showStep);
+
+  var order=['OBSERVE','CALM WITH WORDS','REPORT','ESCALATE'], placed=[], oSlots=document.getElementById('or-slots'), oPool=document.getElementById('or-pool'), oFb=document.getElementById('or-fb'), oCount=document.getElementById('or-count');
+  function drawOrder(){
+    oSlots.innerHTML=''; oPool.innerHTML=''; oCount.textContent=placed.length+' / 4';
+    for(var k=0;k<4;k++){var s=el('div','slot'+(placed[k]?' filled':'')+(k===placed.length?' next':'')); s.appendChild(el('span','num',String(k+1))); s.appendChild(el('span',null,placed[k]?T(placed[k]):'...')); oSlots.appendChild(s);}
+    ['REPORT','ESCALATE','CALM WITH WORDS','OBSERVE'].filter(function(x){return placed.indexOf(x)<0}).forEach(function(x){
+      var b=el('button','btn',T(x)); b.type='button'; b.addEventListener('click',function(){placed.push(x); drawOrder(); if(placed.length===4) checkOrder();}); oPool.appendChild(b);
+    });
+  }
+  function checkOrder(){
+    var ok=placed.every(function(x,k){return x===order[k]});
+    fb(oFb,ok,ok?'Your line never changes.':'The order is: observe, calm with words, report, escalate.',ok?'':'Observe - watch and listen. Calm it with words. Report it to your supervisor. If it is not working, or not safe, escalate.');
+    var r=el('button','btn',T(ok?'Do it again':'Try again')); r.type='button'; r.style.marginTop='10px'; r.addEventListener('click',function(){placed=[]; oFb.innerHTML=''; drawOrder();}); oFb.appendChild(r);
+  }
+  drawOrder(); rerender.push(function(){ oFb.innerHTML=''; if(placed.length===4) placed=[]; drawOrder(); });
+
+  var cards=[["Watch and report",0,"Your job is to watch, report and follow instructions."],["Command the incident",1,"The police lead every suspicious-item incident."],["Move the people next to it away calmly",0,"Move people away from the immediate area calmly, at once."],["Deal with the item",1,"Police and specialists deal with the item."],["Follow instructions",0,"Your job is to watch, report and follow instructions."],["Decide to evacuate",1,"Evacuation is not your decision. Wait for the message."],["Set the cordon distance",1,"A wider cordon and distances come on instruction."]];
+  var ci=0, sCard=document.getElementById('so-card'), sFb=document.getElementById('so-fb'), sCount=document.getElementById('so-count'), sBtns=document.querySelectorAll('#so-btns button'), l0=document.getElementById('so-l0'), l1=document.getElementById('so-l1');
+  function drawCard(){ sCard.textContent=T(cards[ci][0]); sCount.textContent=(ci+1)+' / '+cards.length; sBtns.forEach(function(b){b.disabled=false}); }
+  sBtns.forEach(function(b){b.addEventListener('click',function(){
+    var c=cards[ci], ok=(+b.dataset.col)===c[1];
+    fb(sFb,ok,c[1]===0?'This is your job.':'This is not your job.',c[2]);
+    if(ok){ var li=el('li',null,T(c[0])); li.dataset.en=c[0]; (c[1]===0?l0:l1).appendChild(li); sBtns.forEach(function(x){x.disabled=true});
+      var n=el('button','btn solid',T(ci<cards.length-1?'Next card':'Start again')); n.type='button'; n.style.marginTop='10px';
+      n.addEventListener('click',function(){ if(ci<cards.length-1){ci++;} else {ci=0; l0.innerHTML=''; l1.innerHTML='';} sFb.innerHTML=''; drawCard(); });
+      sFb.appendChild(n);
+    }
+  })});
+  drawCard(); rerender.push(function(){ sFb.innerHTML=''; drawCard(); [l0,l1].forEach(function(l){ [].forEach.call(l.children,function(li){ li.textContent=T(li.dataset.en); }); }); });
+
+  /* Language switch: static text nodes swap through the dictionary; activities re-render; clip subtitles follow */
+  var walked=[];
+  (function collect(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode; if(!p||/^(SCRIPT|STYLE)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+      if(p.closest('#br-scene, #br-step, #br-opts, #br-fb, #or-slots, #or-pool, #or-fb, #so-card, #so-fb, #so-l0, #so-l1')) return NodeFilter.FILTER_REJECT;
+      var k=n.nodeValue.replace(/\s+/g,' ').trim(); return (k && IT[k]) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; }});
+    var n; while((n=w.nextNode())) walked.push({n:n,en:n.nodeValue,key:n.nodeValue.replace(/\s+/g,' ').trim()});
+  })();
+  var titleEn=document.title, btns=document.querySelectorAll('.lang button');
+  function applyLang(l){
+    LANG=l; document.documentElement.lang=l;
+    walked.forEach(function(o){ if(l==='it'){ var m=o.en.match(/^(\s*)[\s\S]*?(\s*)$/); o.n.nodeValue=m[1]+IT[o.key]+m[2]; } else o.n.nodeValue=o.en; });
+    document.title = l==='it' ? 'Matchday Ready · Caso di studio' : titleEn;
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.lang===l?'true':'false'); });
+    rerender.forEach(function(f){ f(); });
+    subSetters.forEach(function(f){ f(l==='it'?'it':'en'); });
+    try{ localStorage.setItem('mr-lang',l); }catch(e){}
+  }
+  btns.forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.dataset.lang); }); });
+  var start='en';
+  try{ var q=new URLSearchParams(location.search).get('lang'); if(q==='it'||q==='en') start=q; else start=localStorage.getItem('mr-lang')||'en'; }catch(e){}
+  if(start==='it') applyLang('it');
+})();
+</script>
+
+</body>
+</html>
