@@ -9,7 +9,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Matchday Ready Case Study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 /* Layout: a capstone case study told like a matchday — navy "night match" bands with a curved floodlit edge carry the story beats; light "daylight" bands carry the evidence; pale yellow is the highlighter, bright blue the action colour. */
 :root{
@@ -470,6 +470,158 @@ h3,h4{letter-spacing:-.01em}
 .eyebrow,.label,.pill,.k,.tag,.tc,.wk,.badge-cap,.lang button,.subsw span,.levers span,.cons .k,.ai .k,.persona .tag,.lane header small,.brief dt,.pf-kicker,.pf-meta dt,.hero-tag{font-weight:700}
 .pf-meta dd{font-weight:500}
 .stat b,.t3 b,.res b,.saving .big,.lesson .n,.mod .n,.knob{font-family:var(--f-display);font-weight:600;text-transform:none}
+
+/* ===== Designer refresh: editorial grotesk type and ruled layouts instead of cards, on the original BE Clear palette ===== */
+:root{
+  --f-display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --r:4px; --shadow:none;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow:none}}
+:root[data-theme="dark"]{--shadow:none}
+
+/* Type */
+body{font-size:17px;line-height:1.6;letter-spacing:-.003em}
+h1,h2,h3,h4,.hero h1,.cta h2{text-transform:none;font-family:var(--f-display);font-style:normal}
+h2{font-size:clamp(2.1rem,4.4vw,3.6rem);font-weight:600;letter-spacing:-.035em;line-height:1.02}
+h3{font-size:1.14rem;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+h4{font-weight:600;letter-spacing:-.01em}
+.hero h1{font-size:clamp(2.8rem,7vw,6rem);font-weight:700;letter-spacing:-.05em;line-height:.95}
+.hero h1 em{color:var(--yellow);font-weight:700}
+.cta h2{font-size:clamp(2.2rem,5vw,4.2rem);font-weight:600;letter-spacing:-.04em}
+.hl,h2 .hl{background:none;padding:0;color:var(--blue)}
+.on-navy .hl{color:var(--yellow)}
+.lede{color:var(--muted);font-size:clamp(1.06rem,1.5vw,1.2rem);line-height:1.6;max-width:56ch}
+.eyebrow,.label,.pill,.k,.tag,.tc,.wk,.badge-cap,.subsw span,.levers span,.cons .k,.ai .k,.persona .tag,.lane header small,.brief dt,.pf-kicker,.pf-meta dt,.hero-tag{font-family:var(--f-mono);font-weight:500;letter-spacing:.08em}
+.stat b,.t3 b,.res b,.saving .big,.lesson .n,.mod .n,.knob{font-family:var(--f-display);font-weight:600;letter-spacing:-.04em}
+
+/* Section heads: a ruled editorial header instead of a coloured dash */
+.head{border-top:1px solid var(--ink);padding-top:16px;gap:20px}
+.on-navy .head{border-top-color:var(--navy-soft)}
+.eyebrow{color:var(--blue);font-size:.72rem;letter-spacing:.12em}
+.eyebrow::before{display:none}
+.on-navy .eyebrow{color:var(--sky)}
+.band-sky{background:var(--sky-band)}
+
+/* Nav */
+.brand{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em}
+.brand span{color:var(--navy-soft)}
+.navlinks a{border-radius:0;padding:7px 10px;font-weight:500;font-size:.84rem}
+.navlinks a:hover,.navlinks a.active{background:none;color:var(--on-navy);box-shadow:inset 0 -1.5px 0 var(--yellow)}
+.lang,.lang button{border-radius:3px}
+.readbar{background:var(--yellow)}
+
+/* Hero: no glow, no curve, crisp edges */
+.hero .glow,.hero::after,.cta::before{display:none}
+.hero{padding-bottom:clamp(56px,7vw,88px)}
+.stats{margin-top:0;padding-top:clamp(40px,5vw,64px)}
+.player,.hero .player{border-radius:6px;box-shadow:none}
+.hero-player .hero-tag,.hero-player .sound,.pf-no,.badge-cap{border-radius:3px}
+.pf-dot{background:var(--yellow)}
+.pf-meta dt{color:var(--navy-soft)}
+.btn-cta{border-radius:4px;font-weight:600;padding:13px 20px}
+.btn-cta:hover{transform:none;filter:brightness(1.05)}
+.btn-cta.ghost{box-shadow:inset 0 0 0 1px var(--navy-soft)}
+
+/* Stats: a ruled band, not a floating card */
+.statgrid{border-radius:0;box-shadow:none;border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:transparent}
+.stat{border-left-color:var(--line)}
+.stat.accent{background:transparent;color:var(--ink)}
+.stat.accent b{color:var(--ink)}
+.stat.accent span{color:var(--muted);opacity:1}
+
+/* Challenge: constraints as a ruled index */
+.constraints{gap:0 28px}
+.cons{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:16px 0 18px}
+.cons .k{color:var(--blue)}
+
+/* Learners */
+.persona{border-radius:0;box-shadow:none;border:0;border-top:1px solid var(--ink);background:transparent}
+.persona .body{padding:clamp(20px,3vw,36px) 0 0 clamp(20px,3vw,40px)}
+.persona blockquote{border-left:2px solid var(--yellow);font-weight:500}
+.needs div{background:transparent;border-top:1px solid var(--line);border-radius:0;padding:10px 0 0}
+.track::before{background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 10px);height:1px;top:9px;opacity:.5}
+.mod{border-radius:4px;box-shadow:none}
+.mod:hover{transform:translateY(-3px);box-shadow:none}
+.mod::before{background:var(--bg);border:2px solid var(--ink);width:10px;height:10px;top:-17px}
+.mod.end::before{background:var(--yellow);border-color:var(--ink)}
+.mod .pic .flag{border-radius:2px}
+.journey-head .hint-p::before{background:var(--yellow)}
+.t3{border-top-width:1px}
+
+/* Approach: no icon tiles; quiet ruled grid */
+.pr .ic{display:none}
+.principles{border-radius:0;border-left:0;border-right:0;border-bottom:0}
+.pr{background:var(--navy)}
+.pr .why{color:var(--yellow);border-top:1px solid var(--navy-line);font-family:var(--f-mono);font-size:.74rem;letter-spacing:.04em}
+.step{border-radius:3px;background:transparent}
+.step::before{background:none;color:var(--navy-soft);width:auto;height:auto;justify-self:start;font-size:.72rem}
+.step.key{background:var(--yellow)}
+.step.key::before{background:none;color:var(--yellow-ink)}
+
+/* Role */
+.org{border-radius:0;box-shadow:none;background:transparent;border:0;border-top:1px solid var(--ink);padding:24px 0 0}
+.node{border-radius:3px}
+.org .kids .node{background:var(--tint)}
+.org .kids::before{border-radius:0;border-width:1px}
+.org .stem{width:1px}
+.node.peer{background:transparent;border-width:1px}
+.node.me span{color:var(--yellow)}
+.duty h3::before{display:none}
+.duty{border-top:1px solid var(--line);padding-top:12px}
+
+/* Process */
+.lane{border-radius:0;border:0;border-top:1px solid var(--ink);background:transparent;padding:16px 0 0}
+.steps li{border-top-style:solid}
+.steps li::before{color:var(--muted)}
+.gate{border-radius:4px}
+.gate .lock{border-radius:3px}
+.bar{border-radius:3px}
+
+/* AI */
+.ai-grid{gap:0 28px}
+.ai{background:transparent;border:0;border-top:1px solid var(--navy-line);border-radius:0;padding:18px 0 22px}
+.saving{border-radius:4px}
+.levers span{border-radius:2px;border-width:1px}
+.rules div{border-radius:0;border:0;border-top:1px solid var(--navy-line);padding:14px 0}
+
+/* Work */
+.compare,.browser,.shot button{border-radius:4px;box-shadow:none}
+.compare .tagL,.compare .tagR,.wall span{border-radius:2px;font-family:var(--f-mono)}
+.phone{box-shadow:inset 0 0 0 2px #262d5e}
+
+/* Video */
+.vbox{border-radius:4px;box-shadow:none}
+.subsw button{border-radius:3px;font-weight:600}
+.subsw button[aria-pressed="true"]{background:var(--yellow);color:var(--yellow-ink);border-color:var(--yellow)}
+.tc{color:var(--navy-soft)}
+
+/* Activities */
+.act{border-radius:4px;box-shadow:none;background:var(--surface)}
+.pill{border-radius:2px}
+.act .task{border-left:2px solid var(--ink);border-radius:0;background:var(--tint)}
+.btn,.slot,.fb,.card{border-radius:4px}
+.btn{border-width:1px}
+.slot .num{background:var(--ink);color:var(--bg)}
+.slot.next{border-color:var(--ink)}
+.progress i{border-radius:0;height:3px}
+.progress i.on{background:var(--ink)}
+.branch img{border-radius:3px}
+
+/* Wall, results, reflection */
+.wall button{border-radius:3px}
+.results{gap:0 28px}
+.res{background:transparent;border:0;border-top:1px solid var(--ink);border-radius:0;padding:18px 0 0}
+.res.hero-res{background:transparent;color:var(--ink)}
+.res.hero-res p{color:var(--muted)}
+.res.hero-res b{color:var(--ink)}
+.lesson .n{color:var(--blue);font-size:1.3rem}
+.lessons{border-top-color:var(--ink)}
+.cta .url{color:var(--navy-soft);font-family:var(--f-mono)}
+dialog button,dialog img{border-radius:3px}
+.btn-cta:focus-visible,button:focus-visible,a:focus-visible{outline-color:var(--yellow)}
+@media (max-width:860px){.persona .body{padding-left:0}}
 </style>
 
 </head>
